@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Sparkles, Star, Zap } from "lucide-react";
+import { ArrowRight, Check, Loader2, ShoppingCart, Sparkles, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -115,6 +115,31 @@ function useRevealOnScroll() {
 
 function ProductCard({ product, index }: { product: (typeof products)[0]; index: number }) {
   const { ref, visible } = useRevealOnScroll();
+  const [isAdding, setIsAdding] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    if (isAdding || isAdded) return;
+
+    setIsAdding(true);
+
+    // Simulate async add to cart
+    setTimeout(() => {
+      setIsAdding(false);
+      setIsAdded(true);
+
+      // Dispatch custom event to update header cart count
+      const event = new CustomEvent("cart-updated", {
+        detail: { count: 1 },
+      });
+      window.dispatchEvent(event);
+
+      // Reset added state after 2 seconds
+      setTimeout(() => {
+        setIsAdded(false);
+      }, 2000);
+    }, 600);
+  };
 
   return (
     <div
@@ -165,9 +190,27 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
           </div>
         </CardContent>
         <CardFooter className="relative p-4 pt-0">
-          <Button className="w-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
-            <Zap className="h-4 w-4" />
-            Adicionar ao carrinho
+          <Button
+            className="w-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20"
+            onClick={handleAddToCart}
+            disabled={isAdding || isAdded}
+          >
+            {isAdding ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Adicionando...
+              </>
+            ) : isAdded ? (
+              <>
+                <Check className="h-4 w-4" />
+                Adicionado!
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="h-4 w-4" />
+                Adicionar ao carrinho
+              </>
+            )}
           </Button>
         </CardFooter>
       </Card>
