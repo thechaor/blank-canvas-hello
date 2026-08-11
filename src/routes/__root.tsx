@@ -14,6 +14,7 @@ import { useState } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider, useCart } from "../contexts/cart-context";
+import { CartIcon } from "../components/cart-icon";
 
 function NotFoundComponent() {
   return (
@@ -284,6 +285,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
+          <CartIcon />
         </div>
       </CartProvider>
     </QueryClientProvider>
