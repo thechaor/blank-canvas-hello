@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/cart-context";
+import { CardDetailsDialog, type CardDetails } from "@/components/card-details-dialog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const products = [
+const products: CardDetails[] = [
   {
     id: 1,
     name: "Charizard VMAX",
@@ -31,6 +32,14 @@ const products = [
     type: "Fogo",
     color: "from-orange-500/20 to-red-500/20",
     badge: "Hot",
+    description: "O lendário Charizard VMAX domina o campo de batalha com seu poder de fogo avassalador. Uma das cartas mais icônicas e desejadas por colecionadores do mundo inteiro.",
+    hp: 330,
+    attack: "G-Max Wildfire",
+    weakness: "Água",
+    resistance: "Lutador",
+    retreatCost: 3,
+    artist: "Mitsuhiro Arita",
+    releaseYear: 2022,
   },
   {
     id: 2,
@@ -42,6 +51,14 @@ const products = [
     type: "Elétrico",
     color: "from-yellow-500/20 to-amber-500/20",
     badge: "Popular",
+    description: "O mascote mais amado de Pokémon! Pikachu V traz choques elétricos devastadores e é uma peça essencial para qualquer coleção que se preze.",
+    hp: 190,
+    attack: "Thunderbolt",
+    weakness: "Lutador",
+    resistance: "Metal",
+    retreatCost: 1,
+    artist: "Sowsow",
+    releaseYear: 2020,
   },
   {
     id: 3,
@@ -53,6 +70,14 @@ const products = [
     type: "Psíquico",
     color: "from-purple-500/20 to-violet-500/20",
     badge: "Novo",
+    description: "Mewtwo VSTAR canaliza seu poder psíquico incomparável. Uma carta rara que combina força bruta com a elegância do Pokémon mais poderoso já criado.",
+    hp: 280,
+    attack: "Psy Purge",
+    weakness: "Sombrio",
+    resistance: "Lutador",
+    retreatCost: 2,
+    artist: "5ban Graphics",
+    releaseYear: 2022,
   },
   {
     id: 4,
@@ -64,6 +89,14 @@ const products = [
     type: "Fantasma",
     color: "from-indigo-500/20 to-purple-500/20",
     badge: "Raro",
+    description: "Gengar VMAX emerge das sombras com seu ataque G-Max Swallow. Uma carta assustadoramente poderosa que assombra os decks dos oponentes.",
+    hp: 320,
+    attack: "G-Max Swallow",
+    weakness: "Sombrio",
+    resistance: "Lutador",
+    retreatCost: 2,
+    artist: "PLANETA Mochizuki",
+    releaseYear: 2021,
   },
   {
     id: 5,
@@ -75,6 +108,14 @@ const products = [
     type: "Voador",
     color: "from-sky-500/20 to-blue-500/20",
     badge: "Lendário",
+    description: "O lendário Pokémon guardião dos mares. Lugia V é uma carta majestosa que representa poder e proteção, essencial para colecionadores sérios.",
+    hp: 220,
+    attack: "Aero Dive",
+    weakness: "Elétrico",
+    resistance: "Lutador",
+    retreatCost: 2,
+    artist: "Akira Komayama",
+    releaseYear: 2022,
   },
   {
     id: 6,
@@ -86,6 +127,14 @@ const products = [
     type: "Dragão",
     color: "from-emerald-500/20 to-green-500/20",
     badge: "Lendário",
+    description: "Rayquaza VMAX, o Pokémon céu, desce das nuvens com poder celestial. Uma das cartas mais valiosas e impressionantes da era VMAX.",
+    hp: 320,
+    attack: "Max Burst",
+    weakness: "Fada",
+    resistance: "Lutador",
+    retreatCost: 2,
+    artist: "PLANETA Igarashi",
+    releaseYear: 2021,
   },
 ];
 
@@ -114,14 +163,15 @@ function useRevealOnScroll() {
   return { ref, visible };
 }
 
-function ProductCard({ product, index }: { product: (typeof products)[0]; index: number }) {
+function ProductCard({ product, index, onViewDetails }: { product: CardDetails; index: number; onViewDetails: (product: CardDetails) => void }) {
   const { ref, visible } = useRevealOnScroll();
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (isAdding || isAdded) return;
 
     setIsAdding(true);
@@ -151,7 +201,10 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <Card className="group relative overflow-hidden border-border/60 bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10">
+      <Card
+        className="group relative cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
+        onClick={() => onViewDetails(product)}
+      >
         <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
         <CardContent className="relative p-4">
           <div className="relative overflow-hidden rounded-lg">
@@ -197,7 +250,10 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
               variant="ghost"
               size="icon"
               className="h-8 w-8"
-              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              onClick={(e) => {
+                e.stopPropagation();
+                setQuantity((q) => Math.max(1, q - 1));
+              }}
               aria-label={`Diminuir quantidade de ${product.name}`}
             >
               <Minus className="h-4 w-4" />
@@ -209,7 +265,10 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
               variant="ghost"
               size="icon"
               className="h-8 w-8"
-              onClick={() => setQuantity((q) => Math.min(99, q + 1))}
+              onClick={(e) => {
+                e.stopPropagation();
+                setQuantity((q) => Math.min(99, q + 1));
+              }}
               aria-label={`Aumentar quantidade de ${product.name}`}
             >
               <Plus className="h-4 w-4" />
@@ -246,6 +305,8 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
 function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [heroVisible, setHeroVisible] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<CardDetails | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     setHeroVisible(true);
@@ -257,6 +318,11 @@ function Index() {
 
   const scrollToCollections = () => {
     document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleViewDetails = (product: CardDetails) => {
+    setSelectedCard(product);
+    setDialogOpen(true);
   };
 
   return (
@@ -335,7 +401,7 @@ function Index() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
+              <ProductCard key={product.id} product={product} index={index} onViewDetails={handleViewDetails} />
             ))}
           </div>
         </div>
@@ -365,6 +431,12 @@ function Index() {
           </Button>
         </div>
       </section>
+
+      <CardDetailsDialog
+        card={selectedCard}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+      />
     </div>
   );
 }
