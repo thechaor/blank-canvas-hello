@@ -13,6 +13,7 @@ import { useState } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CartProvider, useCart } from "../contexts/cart-context";
 
 function NotFoundComponent() {
   return (
@@ -117,17 +118,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-
-  useEffect(() => {
-    const handleCartUpdate = (event: Event) => {
-      const customEvent = event as CustomEvent<{ count: number }>;
-      setCartCount(customEvent.detail.count);
-    };
-
-    window.addEventListener("cart-updated", handleCartUpdate);
-    return () => window.removeEventListener("cart-updated", handleCartUpdate);
-  }, []);
+  const { totalItems } = useCart();
 
   const navLinks = [
     { label: "Início", to: "/" },
@@ -160,14 +151,14 @@ function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
-          <div className="relative">
+          <Link to="/cart" className="relative transition-opacity hover:opacity-80" aria-label="Ver carrinho">
             <ShoppingCart className="h-5 w-5 text-muted-foreground" />
-            {cartCount > 0 && (
+            {totalItems > 0 && (
               <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-lg shadow-primary/30">
-                {cartCount}
+                {totalItems}
               </span>
             )}
-          </div>
+          </Link>
           <Link
             to="/#produtos"
             className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-primary/30"
@@ -198,6 +189,19 @@ function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              to="/cart"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
+              onClick={() => setMobileOpen(false)}
+            >
+              <ShoppingCart className="h-4 w-4" />
+              Carrinho
+              {totalItems > 0 && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
             <Link
               to="/#produtos"
               className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5"
@@ -273,13 +277,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+      <CartProvider>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      </CartProvider>
     </QueryClientProvider>
   );
 }
