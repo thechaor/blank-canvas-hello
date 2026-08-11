@@ -226,6 +226,14 @@ function Index() {
     setHeroVisible(true);
   }, []);
 
+  const scrollToProducts = () => {
+    document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToCollections = () => {
+    document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="relative overflow-hidden">
       {/* Hero Section */}
@@ -262,11 +270,11 @@ function Index() {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="group text-base">
+            <Button size="lg" className="group text-base" onClick={scrollToProducts}>
               Explorar Cartas
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button size="lg" variant="outline" className="text-base">
+            <Button size="lg" variant="outline" className="text-base" onClick={scrollToCollections}>
               Ver Coleções
             </Button>
           </div>
@@ -325,6 +333,7 @@ function Index() {
             size="lg"
             variant="secondary"
             className="mt-8 text-base"
+            onClick={scrollToProducts}
           >
             Começar agora
             <ArrowRight className="h-5 w-5" />
