@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, Loader2, Minus, Plus, ShoppingCart, Sparkles, Star, Zap } from "lucide-react";
+import { ArrowRight, Check, Loader2, Minus, Plus, ShoppingCart, Sparkles, Star, Zap, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/cart-context";
+import { useAuth } from "@/contexts/auth-context";
+import { LoginDialog } from "@/components/login-dialog";
 import { CardDetailsDialog, type CardDetails } from "@/components/card-details-dialog";
 
 export const Route = createFileRoute("/")({
@@ -307,6 +309,8 @@ function Index() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState<CardDetails | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     setHeroVisible(true);
@@ -368,7 +372,27 @@ function Index() {
             <Button size="lg" variant="outline" className="text-base" onClick={scrollToCollections}>
               Ver Coleções
             </Button>
+            {!isAuthenticated && (
+              <Button
+                size="lg"
+                variant="secondary"
+                className="text-base"
+                onClick={() => setLoginOpen(true)}
+              >
+                <LogIn className="h-5 w-5" />
+                Entrar
+              </Button>
+            )}
           </div>
+
+          {isAuthenticated && (
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 backdrop-blur-sm">
+              <Zap className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-foreground">
+                Bem-vindo, {user?.name}! Aproveite suas compras.
+              </span>
+            </div>
+          )}
 
           <div className="mt-16 grid grid-cols-3 gap-8 border-t border-border/60 pt-8">
             <div>
@@ -437,6 +461,8 @@ function Index() {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
       />
+
+      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
     </div>
   );
 }
