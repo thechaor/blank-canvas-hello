@@ -26,7 +26,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5"
           >
             Go home
           </Link>
@@ -58,13 +58,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-lg border border-input bg-background/50 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:bg-accent hover:-translate-y-0.5"
           >
             Go home
           </a>
@@ -136,10 +136,10 @@ function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+        <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-lg shadow-primary/30">
             <span className="text-lg font-black">P</span>
           </span>
           <span className="text-lg font-bold tracking-tight text-foreground">
@@ -152,7 +152,7 @@ function Header() {
             <Link
               key={link.label}
               to={link.to}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
             >
               {link.label}
             </Link>
@@ -163,21 +163,21 @@ function Header() {
           <div className="relative">
             <ShoppingCart className="h-5 w-5 text-muted-foreground" />
             {cartCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-lg shadow-primary/30">
                 {cartCount}
               </span>
             )}
           </div>
           <Link
             to="/#produtos"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-all hover:bg-primary/90 hover:shadow-lg"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-primary/30"
           >
             Ver Cartas
           </Link>
         </div>
 
         <button
-          className="inline-flex items-center justify-center rounded-md p-2 text-foreground md:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-foreground transition-all hover:bg-accent md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Abrir menu"
         >
@@ -186,13 +186,13 @@ function Header() {
       </div>
 
       {mobileOpen && (
-        <nav className="border-t border-border/60 bg-background px-4 py-4 md:hidden">
+        <nav className="border-t border-border/60 bg-background/95 px-4 py-4 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.to}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -200,7 +200,7 @@ function Header() {
             ))}
             <Link
               to="/#produtos"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-all hover:bg-primary/90"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5"
               onClick={() => setMobileOpen(false)}
             >
               Ver Cartas
@@ -219,7 +219,7 @@ function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-lg shadow-primary/30">
                 <span className="text-sm font-black">P</span>
               </span>
               <span className="text-base font-bold tracking-tight text-foreground">
@@ -234,17 +234,17 @@ function Footer() {
             <h3 className="text-sm font-semibold text-foreground">Navegação</h3>
             <ul className="mt-3 space-y-2">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
                   Início
                 </Link>
               </li>
               <li>
-                <Link to="/#produtos" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/#produtos" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
                   Produtos
                 </Link>
               </li>
               <li>
-                <Link to="/#sobre" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <Link to="/#sobre" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
                   Sobre
                 </Link>
               </li>
