@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, Loader2, ShoppingCart, Sparkles, Star, Zap } from "lucide-react";
+import { ArrowRight, Check, Loader2, Minus, Plus, ShoppingCart, Sparkles, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -117,6 +117,7 @@ function useRevealOnScroll() {
 function ProductCard({ product, index }: { product: (typeof products)[0]; index: number }) {
   const { ref, visible } = useRevealOnScroll();
   const { addItem } = useCart();
+  const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -131,9 +132,10 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
         name: product.name,
         price: product.price,
         image: product.image,
-      });
+      }, quantity);
       setIsAdding(false);
       setIsAdded(true);
+      setQuantity(1);
 
       setTimeout(() => {
         setIsAdded(false);
@@ -189,7 +191,30 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
             </div>
           </div>
         </CardContent>
-        <CardFooter className="relative p-4 pt-0">
+        <CardFooter className="relative flex-col gap-3 p-4 pt-0">
+          <div className="flex w-full items-center justify-between rounded-lg border border-border/60 bg-background/50 p-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8"
+              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              aria-label={`Diminuir quantidade de ${product.name}`}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+            <span className="w-8 text-center font-semibold text-foreground" aria-live="polite">
+              {quantity}
+            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8"
+              onClick={() => setQuantity((q) => Math.min(99, q + 1))}
+              aria-label={`Aumentar quantidade de ${product.name}`}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+          </div>
           <Button
             className="w-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20"
             onClick={handleAddToCart}
