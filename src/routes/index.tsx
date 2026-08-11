@@ -277,7 +277,7 @@ function Index() {
           }`}
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1.5 backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 text-primary" />
+            <Sparkles className="h-4 w-4 text-primary animate-sparkle" />
             <span className="text-sm font-medium text-muted-foreground">
               Novas cartas toda semana
             </span>
@@ -285,7 +285,7 @@ function Index() {
 
           <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             Colecione as cartas
-            <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent animate-shimmer">
               mais raras do mundo
             </span>
           </h1>
