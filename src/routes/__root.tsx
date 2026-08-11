@@ -8,13 +8,15 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart, LogIn, LogOut, User } from "lucide-react";
 import { useState } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider, useCart } from "../contexts/cart-context";
+import { AuthProvider, useAuth } from "../contexts/auth-context";
 import { CartIcon } from "../components/cart-icon";
+import { LoginDialog } from "../components/login-dialog";
 import PokemonCardBackground from "../components/pokemon-card-background";
 
 function NotFoundComponent() {
@@ -120,7 +122,9 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
   const { totalItems } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const navLinks = [
     { label: "Início", to: "/" },
@@ -153,6 +157,31 @@ function Header() {
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
+          {isAuthenticated ? (
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-2 rounded-lg border border-border/60 bg-background/50 px-3 py-1.5 text-sm font-medium text-foreground">
+                <User className="h-4 w-4 text-primary" />
+                {user?.name}
+              </span>
+              <button
+                onClick={logout}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-input bg-background/50 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-all hover:bg-accent hover:text-foreground"
+                aria-label="Sair da conta"
+              >
+                <LogOut className="h-4 w-4" />
+                Sair
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => setLoginOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-input bg-background/50 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-all hover:bg-accent hover:text-foreground"
+              aria-label="Entrar na conta"
+            >
+              <LogIn className="h-4 w-4" />
+              Entrar
+            </button>
+          )}
           <Link to="/cart" className="relative transition-opacity hover:opacity-80" aria-label="Ver carrinho">
             <ShoppingCart className="h-5 w-5 text-muted-foreground" />
             {totalItems > 0 && (
@@ -191,6 +220,35 @@ function Header() {
                 {link.label}
               </Link>
             ))}
+            {isAuthenticated ? (
+              <>
+                <span className="flex items-center gap-2 text-sm font-medium text-foreground">
+                  <User className="h-4 w-4 text-primary" />
+                  {user?.name}
+                </span>
+                <button
+                  onClick={() => {
+                    logout();
+                    setMobileOpen(false);
+                  }}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sair
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  setLoginOpen(true);
+                  setMobileOpen(false);
+                }}
+                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
+              >
+                <LogIn className="h-4 w-4" />
+                Entrar
+              </button>
+            )}
             <Link
               to="/cart"
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
@@ -214,6 +272,8 @@ function Header() {
           </div>
         </nav>
       )}
+
+      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
     </header>
   );
 }
@@ -279,32 +339,34 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <div className="flex min-h-screen flex-col pokemon-bg">
-          <PokemonCardBackground />
-          <div className="pokemon-sparkles">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
+      <AuthProvider>
+        <CartProvider>
+          <div className="flex min-h-screen flex-col pokemon-bg">
+            <PokemonCardBackground />
+            <div className="pokemon-sparkles">
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="pokeball-decoration left-8 top-24" />
+            <div className="pokeball-decoration right-12 top-1/3 animate-pokeball-float" />
+            <div className="pokeball-decoration bottom-24 left-1/4 animate-pokeball-spin" />
+            <div className="relative z-10 flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">
+                <Outlet />
+              </main>
+              <Footer />
+              <CartIcon />
+            </div>
           </div>
-          <div className="pokeball-decoration left-8 top-24" />
-          <div className="pokeball-decoration right-12 top-1/3 animate-pokeball-float" />
-          <div className="pokeball-decoration bottom-24 left-1/4 animate-pokeball-spin" />
-          <div className="relative z-10 flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">
-              <Outlet />
-            </main>
-            <Footer />
-            <CartIcon />
-          </div>
-        </div>
-      </CartProvider>
+        </CartProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
