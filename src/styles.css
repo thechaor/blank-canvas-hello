@@ -181,6 +181,93 @@
   }
 }
 
+/* Pokémon anime inspired animations */
+@keyframes pokeball-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pokeball-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes button-shine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+@keyframes button-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 oklch(0.55 0.25 265 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px oklch(0.55 0.25 265 / 0);
+  }
+}
+
+@keyframes background-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@utility animate-pokeball-spin {
+  animation: pokeball-spin 8s linear infinite;
+}
+
+@utility animate-pokeball-float {
+  animation: pokeball-float 6s ease-in-out infinite;
+}
+
+@utility animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
 @utility animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -209,4 +296,139 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Pokémon themed background */
+@utility pokemon-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.pokemon-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, oklch(0.13 0.04 265), oklch(0.2 0.08 265), oklch(0.13 0.04 265));
+  background-size: 400% 400%;
+  animation: background-shift 15s ease-in-out infinite;
+  z-index: 0;
+}
+
+.pokemon-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, oklch(0.55 0.25 265 / 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, oklch(0.7 0.17 162 / 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, oklch(0.63 0.27 304 / 0.08) 0%, transparent 50%);
+  animation: pulse-glow 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Pokémon themed button shine effect */
+@utility pokemon-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.pokemon-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.2), transparent);
+  transform: translateX(-100%) skewX(-20deg);
+  animation: button-shine 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+.pokemon-button:hover {
+  animation: button-pulse 1.5s ease-in-out infinite;
+}
+
+/* Sparkle particles for background */
+@utility pokemon-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pokemon-sparkles span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: oklch(0.985 0.002 247 / 0.6);
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.pokemon-sparkles span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+.pokemon-sparkles span:nth-child(2) { top: 25%; left: 85%; animation-delay: 0.5s; }
+.pokemon-sparkles span:nth-child(3) { top: 60%; left: 5%; animation-delay: 1s; }
+.pokemon-sparkles span:nth-child(4) { top: 80%; left: 75%; animation-delay: 1.5s; }
+.pokemon-sparkles span:nth-child(5) { top: 40%; left: 45%; animation-delay: 2s; }
+.pokemon-sparkles span:nth-child(6) { top: 15%; left: 55%; animation-delay: 2.5s; }
+.pokemon-sparkles span:nth-child(7) { top: 70%; left: 30%; animation-delay: 0.8s; }
+.pokemon-sparkles span:nth-child(8) { top: 90%; left: 60%; animation-delay: 1.8s; }
+
+/* Pokéball decorative element */
+@utility pokeball-decoration {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, oklch(0.7 0.19 22) 0%, oklch(0.7 0.19 22) 45%, oklch(0.13 0.04 265) 45%, oklch(0.13 0.04 265) 55%, oklch(0.985 0.002 247) 55%, oklch(0.985 0.002 247) 100%);
+  border: 2px solid oklch(0.13 0.04 265);
+  box-shadow: 0 0 20px oklch(0.55 0.25 265 / 0.3);
+  opacity: 0.15;
+  animation: pokeball-float 6s ease-in-out infinite;
+}
+
+.pokeball-decoration::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: oklch(0.985 0.002 247);
+  border: 3px solid oklch(0.13 0.04 265);
+}
+
+.pokeball-decoration::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: oklch(0.985 0.002 247);
+  border: 1px solid oklch(0.13 0.04 265);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pokemon-bg::before,
+  .pokemon-bg::after,
+  .pokemon-button::before,
+  .pokemon-sparkles span,
+  .pokeball-decoration,
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow,
+  .animate-shimmer,
+  .animate-pokeball-spin,
+  .animate-pokeball-float,
+  .animate-sparkle,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
 }
