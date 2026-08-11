@@ -162,7 +162,7 @@ function Header() {
           </Link>
           <Link
             to="/#produtos"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-primary/30"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5"
           >
             Ver Cartas
           </Link>
@@ -279,13 +279,28 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <Footer />
-          <CartIcon />
+        <div className="flex min-h-screen flex-col pokemon-bg">
+          <div className="pokemon-sparkles">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="pokeball-decoration left-8 top-24" />
+          <div className="pokeball-decoration right-12 top-1/3 animate-pokeball-float" />
+          <div className="pokeball-decoration bottom-24 left-1/4 animate-pokeball-spin" />
+          <div className="relative z-10 flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <Footer />
+            <CartIcon />
+          </div>
         </div>
       </CartProvider>
     </QueryClientProvider>
