@@ -4,6 +4,7 @@ import { ArrowRight, Check, Loader2, ShoppingCart, Sparkles, Star, Zap } from "l
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/cart-context";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -115,6 +116,7 @@ function useRevealOnScroll() {
 
 function ProductCard({ product, index }: { product: (typeof products)[0]; index: number }) {
   const { ref, visible } = useRevealOnScroll();
+  const { addItem } = useCart();
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -123,18 +125,16 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
 
     setIsAdding(true);
 
-    // Simulate async add to cart
     setTimeout(() => {
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+      });
       setIsAdding(false);
       setIsAdded(true);
 
-      // Dispatch custom event to update header cart count
-      const event = new CustomEvent("cart-updated", {
-        detail: { count: 1 },
-      });
-      window.dispatchEvent(event);
-
-      // Reset added state after 2 seconds
       setTimeout(() => {
         setIsAdded(false);
       }, 2000);
