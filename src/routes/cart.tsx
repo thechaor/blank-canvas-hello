@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Check, Loader2, Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
+import { ArrowLeft, Check, Loader2, Minus, Plus, ShoppingCart, Trash2, LogIn, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/cart-context";
+import { useAuth } from "@/contexts/auth-context";
+import { LoginDialog } from "@/components/login-dialog";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -24,8 +26,10 @@ export const Route = createFileRoute("/cart")({
 
 function CartPage() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem, clearCart } = useCart();
+  const { isAuthenticated, user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,6 +44,11 @@ function CartPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.address) return;
+
+    if (!isAuthenticated) {
+      setLoginOpen(true);
+      return;
+    }
 
     setIsSubmitting(true);
     setTimeout(() => {
@@ -59,7 +68,7 @@ function CartPage() {
             </div>
             <CardTitle className="mt-4 text-2xl">Pedido realizado!</CardTitle>
             <CardDescription>
-              Obrigado, {formData.name || "colecionador"}! Seu pedido foi confirmado e será enviado para o endereço informado.
+              Obrigado, {user?.name || formData.name || "colecionador"}! Seu pedido foi confirmado e será enviado para o endereço informado.
             </CardDescription>
           </CardHeader>
           <CardFooter className="justify-center">
@@ -111,6 +120,28 @@ function CartPage() {
       <p className="mt-2 text-muted-foreground">
         {totalItems} {totalItems === 1 ? "item" : "itens"} no carrinho
       </p>
+
+      {isAuthenticated ? (
+        <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-foreground">
+          <User className="h-4 w-4 text-primary" />
+          Logado como {user?.email}
+        </div>
+      ) : (
+        <div className="mt-4 flex flex-col items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <LogIn className="h-4 w-4 text-primary" />
+            Faça login para finalizar sua compra mais rápido.
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setLoginOpen(true)}
+          >
+            <LogIn className="h-4 w-4" />
+            Entrar agora
+          </Button>
+        </div>
+      )}
 
       <div className="mt-8 grid gap-8 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
@@ -252,6 +283,19 @@ function CartPage() {
           </Card>
         </div>
       </div>
+
+      <LoginDialog
+        open={loginOpen}
+        onOpenChange={setLoginOpen}
+        onSuccess={() => {
+          setIsSubmitting(true);
+          setTimeout(() => {
+            setIsSubmitting(false);
+            setIsOrderPlaced(true);
+            clearCart();
+          }, 800);
+        }}
+      />
     </div>
   );
 }
