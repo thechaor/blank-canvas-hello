@@ -252,6 +252,18 @@
   }
 }
 
+/* Pokémon card floating background animation */
+@keyframes card-float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--card-rotate, 0deg)) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-30px) rotate(calc(var(--card-rotate, 0deg) + 8deg)) scale(1.05);
+    opacity: 0.45;
+  }
+}
+
 @utility animate-pokeball-spin {
   animation: pokeball-spin 8s linear infinite;
 }
@@ -324,6 +336,24 @@
     radial-gradient(circle at 50% 50%, oklch(0.63 0.27 304 / 0.08) 0%, transparent 50%);
   animation: pulse-glow 8s ease-in-out infinite;
   z-index: 0;
+}
+
+/* Pokémon card floating background */
+.pokemon-card-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.pokemon-card-float {
+  position: absolute;
+  display: inline-block;
+  opacity: 0.25;
+  filter: drop-shadow(0 0 12px oklch(0.55 0.25 265 / 0.3));
+  animation: card-float 10s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 /* Pokémon themed button shine effect */
@@ -421,6 +451,7 @@
   .pokemon-button::before,
   .pokemon-sparkles span,
   .pokeball-decoration,
+  .pokemon-card-float,
   .animate-float,
   .animate-float-delayed,
   .animate-float-slow,
