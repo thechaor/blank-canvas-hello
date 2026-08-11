@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider, useCart } from "../contexts/cart-context";
 import { CartIcon } from "../components/cart-icon";
+import PokemonCardBackground from "../components/pokemon-card-background";
 
 function NotFoundComponent() {
   return (
@@ -280,6 +281,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <div className="flex min-h-screen flex-col pokemon-bg">
+          <PokemonCardBackground />
           <div className="pokemon-sparkles">
             <span />
             <span />
