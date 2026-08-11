@@ -255,12 +255,29 @@
 /* Pokémon card floating background animation */
 @keyframes card-float {
   0%, 100% {
-    transform: translateY(0) rotate(var(--card-rotate, 0deg)) scale(1);
+    transform: translate(0, 0) rotate(var(--card-rotate, 0deg)) scale(1);
     opacity: 0.25;
   }
+  25% {
+    transform: translate(var(--card-float-x, 10px), var(--card-float-y, -15px)) rotate(calc(var(--card-rotate, 0deg) + 4deg)) scale(1.03);
+    opacity: 0.4;
+  }
   50% {
-    transform: translateY(-30px) rotate(calc(var(--card-rotate, 0deg) + 8deg)) scale(1.05);
+    transform: translate(calc(var(--card-float-x, 10px) * -0.5), calc(var(--card-float-y, -15px) * -1.5)) rotate(calc(var(--card-rotate, 0deg) - 4deg)) scale(1.05);
     opacity: 0.45;
+  }
+  75% {
+    transform: translate(calc(var(--card-float-x, 10px) * -1), var(--card-float-y, -15px)) rotate(calc(var(--card-rotate, 0deg) + 2deg)) scale(1.02);
+    opacity: 0.35;
+  }
+}
+
+@keyframes card-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px oklch(0.55 0.25 265 / 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px oklch(0.55 0.25 265 / 0.5));
   }
 }
 
@@ -352,8 +369,8 @@
   display: inline-block;
   opacity: 0.25;
   filter: drop-shadow(0 0 12px oklch(0.55 0.25 265 / 0.3));
-  animation: card-float 10s ease-in-out infinite;
-  will-change: transform, opacity;
+  animation: card-float 10s ease-in-out infinite, card-glow 4s ease-in-out infinite;
+  will-change: transform, opacity, filter;
 }
 
 /* Pokémon themed button shine effect */
