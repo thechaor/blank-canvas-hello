@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Loader2, Minus, Plus, ShoppingCart, Sparkles, Star, Zap, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { useCart } from "@/contexts/cart-context";
@@ -304,7 +304,7 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
             </CardFooter>
           </Card>
         </HoverCardTrigger>
-        <HoverCardContent side="right" align="center" sideOffset={12} className="w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
+        <HoverCardContent side="right" align="center" sideOffset={12} className="z-[100] w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
           <CardHoverContent card={product} />
         </HoverCardContent>
       </HoverCard>
