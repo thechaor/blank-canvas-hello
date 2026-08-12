@@ -4,10 +4,11 @@ import { ArrowRight, Check, Loader2, Minus, Plus, ShoppingCart, Sparkles, Star, 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { useCart } from "@/contexts/cart-context";
 import { useAuth } from "@/contexts/auth-context";
 import { LoginDialog } from "@/components/login-dialog";
-import { CardDetailsDialog, type CardDetails } from "@/components/card-details-dialog";
+import { CardDetailsDialog, CardHoverContent, type CardDetails } from "@/components/card-details-dialog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -203,103 +204,110 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <Card
-        className="group relative cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
-        onClick={() => onViewDetails(product)}
-      >
-        <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
-        <CardContent className="relative p-4">
-          <div className="relative overflow-hidden rounded-lg">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
-            <div className="absolute left-2 top-2">
-              <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
-                {product.badge}
-              </Badge>
-            </div>
-            <div className="absolute right-2 top-2">
-              <Badge variant="outline" className="bg-background/80 backdrop-blur-sm">
-                {product.rarity}
-              </Badge>
-            </div>
-          </div>
-          <div className="mt-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold text-foreground">{product.name}</h3>
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                <span className="text-xs font-medium text-muted-foreground">4.9</span>
-              </div>
-            </div>
-            <p className="mt-1 text-sm text-muted-foreground">{product.set}</p>
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-lg font-bold text-foreground">
-                R$ {product.price.toFixed(2).replace(".", ",")}
-              </span>
-              <Badge variant="secondary" className="bg-primary/10 text-primary">
-                {product.type}
-              </Badge>
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="relative flex-col gap-3 p-4 pt-0">
-          <div className="flex w-full items-center justify-between rounded-lg border border-border/60 bg-background/50 p-1">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8"
-              onClick={(e) => {
-                e.stopPropagation();
-                setQuantity((q) => Math.max(1, q - 1));
-              }}
-              aria-label={`Diminuir quantidade de ${product.name}`}
-            >
-              <Minus className="h-4 w-4" />
-            </Button>
-            <span className="w-8 text-center font-semibold text-foreground" aria-live="polite">
-              {quantity}
-            </span>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8"
-              onClick={(e) => {
-                e.stopPropagation();
-                setQuantity((q) => Math.min(99, q + 1));
-              }}
-              aria-label={`Aumentar quantidade de ${product.name}`}
-            >
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
-          <Button
-            className="w-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20"
-            onClick={handleAddToCart}
-            disabled={isAdding || isAdded}
+      <HoverCard openDelay={150} closeDelay={100}>
+        <HoverCardTrigger asChild>
+          <Card
+            className="group relative cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
+            onClick={() => onViewDetails(product)}
           >
-            {isAdding ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Adicionando...
-              </>
-            ) : isAdded ? (
-              <>
-                <Check className="h-4 w-4" />
-                Adicionado!
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="h-4 w-4" />
-                Adicionar ao carrinho
-              </>
-            )}
-          </Button>
-        </CardFooter>
-      </Card>
+            <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
+            <CardContent className="relative p-4">
+              <div className="relative overflow-hidden rounded-lg">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute left-2 top-2">
+                  <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
+                    {product.badge}
+                  </Badge>
+                </div>
+                <div className="absolute right-2 top-2">
+                  <Badge variant="outline" className="bg-background/80 backdrop-blur-sm">
+                    {product.rarity}
+                  </Badge>
+                </div>
+              </div>
+              <div className="mt-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-semibold text-foreground">{product.name}</h3>
+                  <div className="flex items-center gap-1">
+                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <span className="text-xs font-medium text-muted-foreground">4.9</span>
+                  </div>
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">{product.set}</p>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="text-lg font-bold text-foreground">
+                    R$ {product.price.toFixed(2).replace(".", ",")}
+                  </span>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary">
+                    {product.type}
+                  </Badge>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="relative flex-col gap-3 p-4 pt-0">
+              <div className="flex w-full items-center justify-between rounded-lg border border-border/60 bg-background/50 p-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setQuantity((q) => Math.max(1, q - 1));
+                  }}
+                  aria-label={`Diminuir quantidade de ${product.name}`}
+                >
+                  <Minus className="h-4 w-4" />
+                </Button>
+                <span className="w-8 text-center font-semibold text-foreground" aria-live="polite">
+                  {quantity}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setQuantity((q) => Math.min(99, q + 1));
+                  }}
+                  aria-label={`Aumentar quantidade de ${product.name}`}
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+              <Button
+                className="w-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20"
+                onClick={handleAddToCart}
+                disabled={isAdding || isAdded}
+              >
+                {isAdding ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Adicionando...
+                  </>
+                ) : isAdded ? (
+                  <>
+                    <Check className="h-4 w-4" />
+                    Adicionado!
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="h-4 w-4" />
+                    Adicionar ao carrinho
+                  </>
+                )}
+              </Button>
+            </CardFooter>
+          </Card>
+        </HoverCardTrigger>
+        <HoverCardContent side="right" align="center" sideOffset={12} className="w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
+          <CardHoverContent card={product} />
+        </HoverCardContent>
+      </HoverCard>
     </div>
   );
 }
