@@ -129,3 +129,87 @@ export function CardDetailsDialog({ card, open, onOpenChange }: CardDetailsDialo
     </Dialog>
   );
 }
+
+export function CardHoverContent({ card }: { card: CardDetails }) {
+  return (
+    <div className="w-72">
+      <div className="flex items-start gap-3">
+        <img
+          src={card.image}
+          alt={card.name}
+          className="h-24 w-16 shrink-0 rounded-md object-cover shadow-lg shadow-primary/20"
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-2">
+            <h4 className="text-sm font-bold text-foreground">{card.name}</h4>
+            <div className="flex items-center gap-1">
+              <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
+              <span className="text-xs font-medium text-muted-foreground">4.9</span>
+            </div>
+          </div>
+          <p className="mt-0.5 text-xs text-muted-foreground">{card.set} · {card.releaseYear}</p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] px-2 py-0.5">
+              {card.rarity}
+            </Badge>
+            <Badge variant="outline" className="text-[10px] px-2 py-0.5">
+              {card.type}
+            </Badge>
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+        {card.description}
+      </p>
+
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <div className="rounded-md border border-border/60 bg-background/50 p-2">
+          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+            <Shield className="h-3 w-3" />
+            HP
+          </div>
+          <p className="mt-0.5 text-sm font-bold text-foreground">{card.hp}</p>
+        </div>
+        <div className="rounded-md border border-border/60 bg-background/50 p-2">
+          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+            <Zap className="h-3 w-3" />
+            Ataque
+          </div>
+          <p className="mt-0.5 truncate text-xs font-semibold text-foreground">{card.attack}</p>
+        </div>
+        <div className="rounded-md border border-border/60 bg-background/50 p-2">
+          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+            <Package className="h-3 w-3" />
+            Fraqueza
+          </div>
+          <p className="mt-0.5 text-xs font-semibold text-foreground">{card.weakness}</p>
+        </div>
+        <div className="rounded-md border border-border/60 bg-background/50 p-2">
+          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
+            <Layers className="h-3 w-3" />
+            Resistência
+          </div>
+          <p className="mt-0.5 text-xs font-semibold text-foreground">{card.resistance}</p>
+        </div>
+      </div>
+
+      <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-2.5">
+        <div>
+          <p className="text-[10px] text-muted-foreground">Preço</p>
+          <p className="text-base font-bold text-foreground">
+            R$ {card.price.toFixed(2).replace(".", ",")}
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-[10px] text-muted-foreground">Recuo</p>
+          <p className="text-sm font-semibold text-foreground">{card.retreatCost}</p>
+        </div>
+        <div className="text-right">
+          <p className="text-[10px] text-muted-foreground">Artista</p>
+          <p className="text-xs font-medium text-foreground">{card.artist}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
