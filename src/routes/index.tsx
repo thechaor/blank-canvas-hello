@@ -199,7 +199,7 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`relative z-10 transition-all duration-700 ease-out ${
         visible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
@@ -207,7 +207,7 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
       <HoverCard openDelay={150} closeDelay={100}>
         <HoverCardTrigger asChild>
           <Card
-            className="group relative cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
+            className="group relative z-10 cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:z-20 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
             onClick={() => onViewDetails(product)}
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
@@ -304,7 +304,7 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
             </CardFooter>
           </Card>
         </HoverCardTrigger>
-        <HoverCardContent side="right" align="center" sideOffset={12} className="z-[100] w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
+        <HoverCardContent side="right" align="center" sideOffset={12} className="z-[200] w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
           <CardHoverContent card={product} />
         </HoverCardContent>
       </HoverCard>
