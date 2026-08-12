@@ -304,7 +304,7 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
             </CardFooter>
           </Card>
         </HoverCardTrigger>
-        <HoverCardContent side="right" align="center" sideOffset={12} className="z-[200] w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
+        <HoverCardContent side="right" align="center" sideOffset={12} className="z-[9999] w-auto border-border/60 bg-popover/95 backdrop-blur-xl">
           <CardHoverContent card={product} />
         </HoverCardContent>
       </HoverCard>
