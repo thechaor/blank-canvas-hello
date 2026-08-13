@@ -200,23 +200,23 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
     <div
       ref={ref}
       className={`relative z-10 transition-all duration-700 ease-out ${
-        visible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+        visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       <HoverCard openDelay={150} closeDelay={100}>
         <HoverCardTrigger asChild>
           <Card
-            className="group relative z-10 cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:z-20 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
+            className="group relative z-10 cursor-pointer overflow-hidden border-border/60 bg-card transition-all duration-300 hover:z-20 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/30"
             onClick={() => onViewDetails(product)}
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
-            <CardContent className="relative p-4">
+            <CardContent className="relative p-4 sm:p-5">
               <div className="relative overflow-hidden rounded-lg">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute left-2 top-2">
@@ -231,16 +231,16 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
                 </div>
               </div>
               <div className="mt-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-semibold text-foreground">{product.name}</h3>
-                  <div className="flex items-center gap-1">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-base font-bold text-foreground sm:text-lg">{product.name}</h3>
+                  <div className="flex shrink-0 items-center gap-1">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     <span className="text-xs font-medium text-muted-foreground">4.9</span>
                   </div>
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">{product.set}</p>
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="text-lg font-bold text-foreground">
+                  <span className="text-lg font-extrabold text-foreground sm:text-xl">
                     R$ {product.price.toFixed(2).replace(".", ",")}
                   </span>
                   <Badge variant="secondary" className="bg-primary/10 text-primary">
@@ -249,12 +249,12 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="relative flex-col gap-3 p-4 pt-0">
+            <CardFooter className="relative flex-col gap-3 p-4 pt-0 sm:p-5 sm:pt-0">
               <div className="flex w-full items-center justify-between rounded-lg border border-border/60 bg-background/50 p-1">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-9 w-9"
                   onClick={(e) => {
                     e.stopPropagation();
                     setQuantity((q) => Math.max(1, q - 1));
@@ -269,7 +269,7 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-9 w-9"
                   onClick={(e) => {
                     e.stopPropagation();
                     setQuantity((q) => Math.min(99, q + 1));
@@ -334,15 +334,15 @@ function Index() {
   return (
     <div className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-background">
+      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-background sm:min-h-[90vh]">
         {/* Static background orbs */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute -right-32 top-1/2 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+          <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-primary/10 blur-3xl sm:h-96 sm:w-96" />
+          <div className="absolute -right-32 top-1/2 h-80 w-80 rounded-full bg-primary/15 blur-3xl sm:h-96 sm:w-96" />
+          <div className="absolute bottom-0 left-1/2 h-56 w-56 rounded-full bg-accent/15 blur-3xl sm:h-64 sm:w-64" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1.5 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">
@@ -350,30 +350,30 @@ function Index() {
             </span>
           </div>
 
-          <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Colecione as cartas
             <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
               mais raras do mundo
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:mt-6 sm:text-lg lg:text-xl">
             Explore nossa coleção exclusiva de cartas de Pokémon. Desde clássicos lendários até as edições mais recentes, encontre a carta perfeita para completar sua coleção.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" className="group text-base" onClick={scrollToProducts}>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+            <Button size="lg" className="group w-full text-base sm:w-auto" onClick={scrollToProducts}>
               Explorar Cartas
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button size="lg" variant="outline" className="text-base" onClick={scrollToCollections}>
+            <Button size="lg" variant="outline" className="w-full text-base sm:w-auto" onClick={scrollToCollections}>
               Ver Coleções
             </Button>
             {!isAuthenticated && (
               <Button
                 size="lg"
                 variant="secondary"
-                className="text-base"
+                className="w-full text-base sm:w-auto"
                 onClick={() => setLoginOpen(true)}
               >
                 <LogIn className="h-5 w-5" />
@@ -391,36 +391,36 @@ function Index() {
             </div>
           )}
 
-          <div className="mt-16 grid grid-cols-3 gap-8 border-t border-border/60 pt-8">
+          <div className="mt-12 grid grid-cols-3 gap-4 border-t border-border/60 pt-8 sm:mt-16 sm:gap-8">
             <div>
-              <p className="text-3xl font-bold text-foreground">500+</p>
-              <p className="mt-1 text-sm text-muted-foreground">Cartas disponíveis</p>
+              <p className="text-2xl font-bold text-foreground sm:text-3xl">500+</p>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Cartas disponíveis</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-foreground">10k+</p>
-              <p className="mt-1 text-sm text-muted-foreground">Colecionadores</p>
+              <p className="text-2xl font-bold text-foreground sm:text-3xl">10k+</p>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Colecionadores</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-foreground">4.9</p>
-              <p className="mt-1 text-sm text-muted-foreground">Avaliação média</p>
+              <p className="text-2xl font-bold text-foreground sm:text-3xl">4.9</p>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Avaliação média</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Products Section */}
-      <section id="produtos" className="relative bg-muted/30 py-20">
+      <section id="produtos" className="relative bg-muted/30 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <div className="mb-10 text-center sm:mb-12">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
               Cartas em destaque
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground sm:mt-4 sm:text-base">
               As cartas mais procuradas pelos colecionadores, com preços competitivos e garantia de autenticidade.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {products.map((product, index) => (
               <ProductCard key={product.id} product={product} index={index} onViewDetails={handleViewDetails} />
             ))}
@@ -429,22 +429,22 @@ function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-primary py-20">
+      <section className="relative overflow-hidden bg-primary py-16 sm:py-20">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-primary-foreground/10 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-primary-foreground/10 blur-3xl" />
+          <div className="absolute left-1/4 top-0 h-56 w-56 rounded-full bg-primary-foreground/10 blur-3xl sm:h-64 sm:w-64" />
+          <div className="absolute bottom-0 right-1/4 h-56 w-56 rounded-full bg-primary-foreground/10 blur-3xl sm:h-64 sm:w-64" />
         </div>
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl lg:text-4xl">
             Pronto para começar sua coleção?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/80">
+          <p className="mx-auto mt-3 max-w-2xl text-base text-primary-foreground/80 sm:mt-4 sm:text-lg">
             Junte-se a milhares de colecionadores que confiam na TCG Pokedex para encontrar as melhores cartas do mercado.
           </p>
           <Button
             size="lg"
             variant="secondary"
-            className="mt-8 text-base"
+            className="mt-6 w-full text-base sm:mt-8 sm:w-auto"
             onClick={scrollToProducts}
           >
             Começar agora
