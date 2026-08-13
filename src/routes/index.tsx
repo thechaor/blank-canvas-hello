@@ -313,16 +313,10 @@ function ProductCard({ product, index, onViewDetails }: { product: CardDetails; 
 }
 
 function Index() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [heroVisible, setHeroVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState<CardDetails | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const { isAuthenticated, user } = useAuth();
-
-  useEffect(() => {
-    setHeroVisible(true);
-  }, []);
 
   const scrollToProducts = () => {
     document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
@@ -341,21 +335,16 @@ function Index() {
     <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-background">
-        {/* Animated background orbs */}
+        {/* Static background orbs */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-32 top-1/4 h-96 w-96 animate-float rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute -right-32 top-1/2 h-96 w-96 animate-float-delayed rounded-full bg-primary/20 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-64 w-64 animate-float-slow rounded-full bg-accent/20 blur-3xl" />
+          <div className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+          <div className="absolute -right-32 top-1/2 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
         </div>
 
-        <div
-          ref={heroRef}
-          className={`relative z-10 mx-auto max-w-4xl px-4 text-center transition-all duration-1000 ease-out sm:px-6 lg:px-8 ${
-            heroVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1.5 backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 text-primary animate-sparkle" />
+            <Sparkles className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">
               Novas cartas toda semana
             </span>
@@ -363,7 +352,7 @@ function Index() {
 
           <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             Colecione as cartas
-            <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent animate-shimmer">
+            <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
               mais raras do mundo
             </span>
           </h1>
@@ -442,8 +431,8 @@ function Index() {
       {/* CTA Section */}
       <section className="relative overflow-hidden bg-primary py-20">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/4 top-0 h-64 w-64 animate-float rounded-full bg-primary-foreground/10 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 h-64 w-64 animate-float-delayed rounded-full bg-primary-foreground/10 blur-3xl" />
+          <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-primary-foreground/10 blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-primary-foreground/10 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
