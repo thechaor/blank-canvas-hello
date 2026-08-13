@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Check, Loader2, Minus, Plus, ShoppingCart, Trash2, LogIn, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -105,7 +104,7 @@ function CartPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <Link
         to="/#produtos"
         className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -114,10 +113,10 @@ function CartPage() {
         Continuar comprando
       </Link>
 
-      <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+      <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
         Seu carrinho
       </h1>
-      <p className="mt-2 text-muted-foreground">
+      <p className="mt-2 text-sm text-muted-foreground sm:text-base">
         {totalItems} {totalItems === 1 ? "item" : "itens"} no carrinho
       </p>
 
@@ -154,7 +153,7 @@ function CartPage() {
                   className="h-24 w-20 rounded-lg object-cover"
                 />
                 <div className="flex-1">
-                  <h3 className="font-semibold text-foreground">{item.name}</h3>
+                  <h3 className="font-bold text-foreground">{item.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">
                     R$ {item.price.toFixed(2).replace(".", ",")}
                   </p>
@@ -164,7 +163,7 @@ function CartPage() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-9 w-9"
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       aria-label={`Diminuir quantidade de ${item.name}`}
                     >
@@ -176,7 +175,7 @@ function CartPage() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-9 w-9"
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       aria-label={`Aumentar quantidade de ${item.name}`}
                     >
@@ -186,7 +185,7 @@ function CartPage() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                    className="h-9 w-9 text-muted-foreground hover:text-destructive"
                     onClick={() => removeItem(item.id)}
                     aria-label={`Remover ${item.name} do carrinho`}
                   >
@@ -217,7 +216,7 @@ function CartPage() {
               <div className="mt-4 border-t border-border/60 pt-4">
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-foreground">Total</span>
-                  <span className="text-xl font-bold text-primary">
+                  <span className="text-xl font-extrabold text-primary">
                     R$ {totalPrice.toFixed(2).replace(".", ",")}
                   </span>
                 </div>
