@@ -128,8 +128,8 @@ function Header() {
 
   const navLinks = [
     { label: "Início", to: "/" },
-    { label: "Produtos", to: "/#produtos" },
-    { label: "Sobre", to: "/#sobre" },
+    { label: "Produtos", to: "/", hash: "produtos" },
+    { label: "Sobre", to: "/", hash: "sobre" },
   ];
 
   return (
