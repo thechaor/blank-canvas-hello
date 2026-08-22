@@ -94,7 +94,7 @@ function CartPage() {
             </CardDescription>
           </CardHeader>
           <CardFooter className="justify-center">
-            <Link to="/#produtos">
+            <Link to="/" hash="produtos">
               <Button>Explorar cartas</Button>
             </Link>
           </CardFooter>
