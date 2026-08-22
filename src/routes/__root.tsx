@@ -308,12 +308,12 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/#produtos" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
+                <Link to="/" hash="produtos" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
                   Produtos
                 </Link>
               </li>
               <li>
-                <Link to="/#sobre" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
+                <Link to="/" hash="sobre" className="text-sm text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02] inline-block">
                   Sobre
                 </Link>
               </li>
