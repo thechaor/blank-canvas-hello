@@ -149,7 +149,7 @@ function Header() {
             <Link
               key={link.label}
               to={link.to}
-              hash={link.hash}
+              hash={link.hash || undefined}
               className="text-sm font-medium text-muted-foreground transition-all hover:text-foreground hover:scale-[1.02]"
             >
               {link.label}
