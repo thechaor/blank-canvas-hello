@@ -192,7 +192,8 @@ function Header() {
             )}
           </Link>
           <Link
-            to="/#produtos"
+            to="/"
+            hash="produtos"
             className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:-translate-y-0.5"
           >
             Ver Cartas
