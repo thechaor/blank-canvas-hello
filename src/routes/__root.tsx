@@ -126,7 +126,7 @@ function Header() {
   const { totalItems } = useCart();
   const { user, isAuthenticated, logout } = useAuth();
 
-  const navLinks = [
+  const navLinks: { label: string; to: "/"; hash?: string }[] = [
     { label: "Início", to: "/" },
     { label: "Produtos", to: "/", hash: "produtos" },
     { label: "Sobre", to: "/", hash: "sobre" },
