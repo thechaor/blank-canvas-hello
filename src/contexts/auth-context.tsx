@@ -21,7 +21,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Simulated authentication - accepts any valid email/password
     await new Promise((resolve) => setTimeout(resolve, 600));
     if (email && password.length >= 6) {
-      setUser({ name: email.split("@")[0], email });
+      setUser({ name: email.split("@")[0] || "User", email });
       return true;
     }
     return false;
