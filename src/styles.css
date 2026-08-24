@@ -343,9 +343,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, oklch(0.28 0.14 260), oklch(0.15 0.09 260), oklch(0.06 0.04 260), oklch(0.02 0.01 260));
-  background-size: 400% 400%;
-  animation: background-shift 15s ease-in-out infinite;
+  background: linear-gradient(180deg, oklch(0.35 0.16 260), oklch(0.18 0.1 260), oklch(0.06 0.04 260), oklch(0.02 0.01 260));
+  background-size: 100% 200%;
+  animation: background-shift 12s ease-in-out infinite;
   z-index: 0;
 }
 
@@ -354,9 +354,9 @@
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 25%, oklch(0.55 0.2 265 / 0.18) 0%, transparent 55%),
-    radial-gradient(circle at 85% 75%, oklch(0.45 0.16 250 / 0.12) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, oklch(0.35 0.12 240 / 0.1) 0%, transparent 55%);
+    radial-gradient(circle at 25% 20%, oklch(0.55 0.22 265 / 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, oklch(0.45 0.18 250 / 0.16) 0%, transparent 50%),
+    radial-gradient(circle at 50% 60%, oklch(0.4 0.14 240 / 0.12) 0%, transparent 50%);
   animation: pulse-glow 8s ease-in-out infinite;
   z-index: 0;
 }
