@@ -409,7 +409,7 @@ function Index() {
       </section>
 
       {/* Products Section */}
-      <section id="produtos" className="relative bg-background/20 py-16 sm:py-20">
+      <section id="produtos" className="relative bg-background/10 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center sm:mb-12">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
