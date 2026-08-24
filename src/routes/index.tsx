@@ -345,21 +345,23 @@ function Index() {
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1.5 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-muted-foreground">
+            <span className="text-sm font-medium text-foreground">
               Novas cartas toda semana
             </span>
+
           </div>
 
           <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Colecione as cartas
-            <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            <span className="block text-foreground">
               mais raras do mundo
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:mt-6 sm:text-lg lg:text-xl">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/90 sm:mt-6 sm:text-lg lg:text-xl">
             Explore nossa coleção exclusiva de cartas de Pokémon. Desde clássicos lendários até as edições mais recentes, encontre a carta perfeita para completar sua coleção.
           </p>
+
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
             <Button size="lg" className="group w-full text-base sm:w-auto" onClick={scrollToProducts}>
