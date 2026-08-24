@@ -334,7 +334,7 @@ function Index() {
   return (
     <div className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-background sm:min-h-[90vh]">
+      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden sm:min-h-[90vh]">
         {/* Static background orbs */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-primary/10 blur-3xl sm:h-96 sm:w-96" />
