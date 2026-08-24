@@ -345,20 +345,29 @@ function Index() {
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1.5 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">
+            <span className="text-sm font-medium text-white">
               Novas cartas toda semana
             </span>
 
           </div>
 
-          <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1
+            className="text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl"
+            style={{ textShadow: '0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.5)' }}
+          >
             Colecione as cartas
-            <span className="block text-foreground">
+            <span
+              className="block text-white"
+              style={{ textShadow: '0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.5)' }}
+            >
               mais raras do mundo
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/90 sm:mt-6 sm:text-lg lg:text-xl">
+          <p
+            className="mx-auto mt-4 max-w-2xl text-base text-white/90 sm:mt-6 sm:text-lg lg:text-xl"
+            style={{ textShadow: '0 0 8px rgba(255,255,255,0.6), 0 0 16px rgba(255,255,255,0.3)' }}
+          >
             Explore nossa coleção exclusiva de cartas de Pokémon. Desde clássicos lendários até as edições mais recentes, encontre a carta perfeita para completar sua coleção.
           </p>
 
@@ -387,7 +396,7 @@ function Index() {
           {isAuthenticated && (
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 backdrop-blur-sm">
               <Zap className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-foreground">
+              <span className="text-sm font-medium text-white">
                 Bem-vindo, {user?.name}! Aproveite suas compras.
               </span>
             </div>
@@ -395,16 +404,16 @@ function Index() {
 
           <div className="mt-12 grid grid-cols-3 gap-4 border-t border-border/60 pt-8 sm:mt-16 sm:gap-8">
             <div>
-              <p className="text-2xl font-bold text-foreground sm:text-3xl">500+</p>
-              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Cartas disponíveis</p>
+              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.6)' }}>500+</p>
+              <p className="mt-1 text-xs text-white/70 sm:text-sm">Cartas disponíveis</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground sm:text-3xl">10k+</p>
-              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Colecionadores</p>
+              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.6)' }}>10k+</p>
+              <p className="mt-1 text-xs text-white/70 sm:text-sm">Colecionadores</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground sm:text-3xl">4.9</p>
-              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Avaliação média</p>
+              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.6)' }}>4.9</p>
+              <p className="mt-1 text-xs text-white/70 sm:text-sm">Avaliação média</p>
             </div>
           </div>
         </div>
