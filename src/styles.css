@@ -343,9 +343,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, oklch(0.45 0.18 260), oklch(0.28 0.14 260), oklch(0.12 0.07 260), oklch(0.02 0.01 260));
-  background-size: 100% 200%;
-  animation: background-shift 12s ease-in-out infinite;
+  background: linear-gradient(180deg, oklch(0.5 0.2 260) 0%, oklch(0.3 0.14 260) 25%, oklch(0.12 0.07 260) 60%, oklch(0.02 0.01 260) 100%);
   z-index: 0;
 }
 
