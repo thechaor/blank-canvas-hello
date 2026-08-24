@@ -334,7 +334,7 @@ function Index() {
   return (
     <div className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden bg-background sm:min-h-[90vh]">
+      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden sm:min-h-[90vh]">
         {/* Static background orbs */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-32 top-1/4 h-80 w-80 rounded-full bg-primary/10 blur-3xl sm:h-96 sm:w-96" />
@@ -409,7 +409,7 @@ function Index() {
       </section>
 
       {/* Products Section */}
-      <section id="produtos" className="relative bg-muted/30 py-16 sm:py-20">
+      <section id="produtos" className="relative bg-background/10 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center sm:mb-12">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
