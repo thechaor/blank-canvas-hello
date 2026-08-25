@@ -1,3 +1,3 @@
 export default function App() {
-  return <div>remova o neon da hero</div>;
+  return <div>Mude para o modo build. Remova o efeito neon da hero.</div>;
 }
