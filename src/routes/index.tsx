@@ -353,12 +353,12 @@ function Index() {
 
           <h1
             className="text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl"
-            style={{ textShadow: '0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.5)' }}
+            style={{ textShadow: '0 0 12px rgba(255,255,255,0.72), 0 0 24px rgba(255,255,255,0.45)' }}
           >
             Colecione as cartas
             <span
               className="block text-white"
-              style={{ textShadow: '0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.5)' }}
+              style={{ textShadow: '0 0 12px rgba(255,255,255,0.72), 0 0 24px rgba(255,255,255,0.45)' }}
             >
               mais raras do mundo
             </span>
@@ -366,7 +366,7 @@ function Index() {
 
           <p
             className="mx-auto mt-4 max-w-2xl text-base text-white/90 sm:mt-6 sm:text-lg lg:text-xl"
-            style={{ textShadow: '0 0 8px rgba(255,255,255,0.6), 0 0 16px rgba(255,255,255,0.3)' }}
+            style={{ textShadow: '0 0 8px rgba(255,255,255,0.54), 0 0 16px rgba(255,255,255,0.27)' }}
           >
             Explore nossa coleção exclusiva de cartas de Pokémon. Desde clássicos lendários até as edições mais recentes, encontre a carta perfeita para completar sua coleção.
           </p>
@@ -404,15 +404,15 @@ function Index() {
 
           <div className="mt-12 grid grid-cols-3 gap-4 border-t border-border/60 pt-8 sm:mt-16 sm:gap-8">
             <div>
-              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.6)' }}>500+</p>
+              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.54)' }}>500+</p>
               <p className="mt-1 text-xs text-white/70 sm:text-sm">Cartas disponíveis</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.6)' }}>10k+</p>
+              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.54)' }}>10k+</p>
               <p className="mt-1 text-xs text-white/70 sm:text-sm">Colecionadores</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.6)' }}>4.9</p>
+              <p className="text-2xl font-bold text-white sm:text-3xl" style={{ textShadow: '0 0 8px rgba(255,255,255,0.54)' }}>4.9</p>
               <p className="mt-1 text-xs text-white/70 sm:text-sm">Avaliação média</p>
             </div>
           </div>
