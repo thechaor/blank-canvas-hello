@@ -17,7 +17,6 @@ import { CartProvider, useCart } from "../contexts/cart-context";
 import { AuthProvider, useAuth } from "../contexts/auth-context";
 import { CartIcon } from "../components/cart-icon";
 import { LoginDialog } from "../components/login-dialog";
-import PokemonCardBackground from "../components/pokemon-card-background";
 
 function NotFoundComponent() {
   return (
@@ -344,21 +343,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
-          <div className="flex min-h-screen flex-col pokemon-bg">
-            <PokemonCardBackground />
-            <div className="pokemon-sparkles">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="pokeball-decoration left-8 top-24" />
-            <div className="pokeball-decoration right-12 top-1/3 animate-pokeball-float" />
-            <div className="pokeball-decoration bottom-24 left-1/4 animate-pokeball-spin" />
+          <div className="flex min-h-screen flex-col bg-background">
             <div className="relative z-10 flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">
