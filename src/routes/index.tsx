@@ -348,7 +348,6 @@ function Index() {
             <span className="text-sm font-medium text-white">
               Novas cartas toda semana
             </span>
-
           </div>
 
           <h1
@@ -371,11 +370,10 @@ function Index() {
             Explore nossa coleção exclusiva de cartas de Pokémon. Desde clássicos lendários até as edições mais recentes, encontre a carta perfeita para completar sua coleção.
           </p>
 
-
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-            <Button size="lg" className="group w-full text-base sm:w-auto" onClick={scrollToProducts}>
+            <Button size="lg" className="w-full text-base sm:w-auto" onClick={scrollToProducts}>
               Explorar Cartas
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5" />
             </Button>
             <Button size="lg" variant="outline" className="w-full text-base sm:w-auto" onClick={scrollToCollections}>
               Ver Coleções
