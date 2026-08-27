@@ -100,6 +100,25 @@
   }
 }
 
+/* Rain Effect */
+.rain-drop {
+  background: linear-gradient(180deg, transparent, oklch(0.75 0.18 245 / 0.8));
+  border-radius: 9999px;
+  animation-name: rainfall;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  will-change: transform;
+}
+
+@keyframes rainfall {
+  0% {
+    transform: translateY(-50px) translateX(0);
+  }
+  100% {
+    transform: translateY(105vh) translateX(-20px);
+  }
+}
+
 /* Tech ambient effects */
 @utility tech-grid {
   background-size: 32px 32px;
@@ -190,7 +209,8 @@
 @media (prefers-reduced-motion: reduce) {
   .holo-card::after,
   .animate-pulse-subtle,
-  .animate-float-minimal {
+  .animate-float-minimal,
+  .rain-drop {
     animation: none !important;
     transition: none !important;
   }
