@@ -128,6 +128,148 @@
   }
 }
 
+/* Aquarium Rising Water & Aquatic Atmosphere */
+.water-tank {
+  position: fixed;
+  inset-x: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  will-change: height;
+  animation: fill-aquarium 30s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+.water-body {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    oklch(0.65 0.18 240 / 0.18) 0%,
+    oklch(0.50 0.22 245 / 0.28) 35%,
+    oklch(0.35 0.20 250 / 0.45) 70%,
+    oklch(0.20 0.18 255 / 0.60) 100%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: inset 0 20px 40px oklch(0.75 0.2 240 / 0.15);
+}
+
+.water-surface-wave {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 200%;
+  height: 28px;
+  fill: oklch(0.65 0.18 240 / 0.28);
+  animation: wave-horizontal 8s linear infinite;
+  will-change: transform;
+}
+
+.water-surface-wave-secondary {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  width: 200%;
+  height: 24px;
+  fill: oklch(0.78 0.20 230 / 0.22);
+  animation: wave-horizontal-reverse 6s linear infinite;
+  will-change: transform;
+}
+
+.water-surface-glow {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.85 0.15 235 / 0.7) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 15px oklch(0.75 0.20 240 / 0.8), 0 0 35px oklch(0.65 0.22 245 / 0.5);
+  animation: surface-shimmer 4s ease-in-out infinite alternate;
+}
+
+.aquarium-bubble {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 35%, oklch(1 0 0 / 0.8), oklch(0.7 0.18 240 / 0.35) 60%, transparent 100%);
+  border: 1px solid oklch(0.85 0.15 235 / 0.4);
+  box-shadow: 0 0 6px oklch(0.75 0.20 240 / 0.4);
+  will-change: transform, opacity;
+  animation: bubble-float linear infinite;
+}
+
+@keyframes fill-aquarium {
+  0% {
+    height: 4vh;
+  }
+  15% {
+    height: 18vh;
+  }
+  45% {
+    height: 48vh;
+  }
+  80% {
+    height: 82vh;
+  }
+  100% {
+    height: 92vh;
+  }
+}
+
+@keyframes wave-horizontal {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0);
+  }
+}
+
+@keyframes wave-horizontal-reverse {
+  0% {
+    transform: translateX(-50%) translateZ(0);
+  }
+  100% {
+    transform: translateX(0) translateZ(0);
+  }
+}
+
+@keyframes surface-shimmer {
+  0% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1.4);
+  }
+}
+
+@keyframes bubble-float {
+  0% {
+    transform: translateY(100%) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(40%) translateX(12px);
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-20px) translateX(-10px);
+    opacity: 0;
+  }
+}
+
 /* Tech ambient effects */
 @utility tech-grid {
   background-size: 32px 32px;
@@ -219,7 +361,11 @@
   .holo-card::after,
   .animate-pulse-subtle,
   .animate-float-minimal,
-  .rain-drop {
+  .rain-drop,
+  .water-tank,
+  .water-surface-wave,
+  .water-surface-wave-secondary,
+  .aquarium-bubble {
     animation: none !important;
     transition: none !important;
     display: none !important;
