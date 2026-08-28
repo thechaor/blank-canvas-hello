@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { Star, Sparkles, Shield, Zap, Package, Layers } from "lucide-react";
+import { Shield, Zap, Package, Layers, Sparkles, User, Calendar, CheckCircle2 } from "lucide-react";
 
 export interface CardDetails {
   id: number;
@@ -33,94 +33,112 @@ export function CardDetailsDialog({ card, open, onOpenChange }: CardDetailsDialo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl overflow-hidden p-0">
-        <div className="grid gap-0 sm:grid-cols-2">
-          <div className="relative flex items-center justify-center bg-gradient-to-br p-6">
-            <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-40`} />
-            <img
-              src={card.image}
-              alt={card.name}
-              className="relative z-10 aspect-[3/4] w-full max-w-[280px] rounded-lg object-cover shadow-2xl shadow-primary/20"
-            />
-            <Badge className="absolute left-4 top-4 z-20 bg-background/80 backdrop-blur-sm">
-              {card.badge}
-            </Badge>
-          </div>
+      <DialogContent className="max-w-3xl overflow-hidden rounded-2xl border border-border/80 bg-popover/95 p-0 shadow-2xl backdrop-blur-2xl">
+        <div className="grid gap-0 sm:grid-cols-12">
+          {/* Card Presentation Stage */}
+          <div className="relative flex flex-col items-center justify-center border-b border-border/60 bg-gradient-to-br from-black/40 via-card to-background p-6 sm:col-span-5 sm:border-b-0 sm:border-r">
+            <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${card.color} opacity-30 blur-2xl`} />
 
-          <div className="flex flex-col p-6">
-            <DialogHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <DialogTitle className="text-2xl font-bold text-foreground">
-                    {card.name}
-                  </DialogTitle>
-                  <DialogDescription className="mt-1 text-sm text-muted-foreground">
-                    {card.set} · {card.releaseYear}
-                  </DialogDescription>
-                </div>
-                <div className="flex items-center gap-1 rounded-lg bg-primary/10 px-2.5 py-1">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span className="text-sm font-semibold text-primary">4.9</span>
-                </div>
-              </div>
-            </DialogHeader>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Badge variant="secondary" className="bg-primary/10 text-primary">
-                {card.rarity}
-              </Badge>
-              <Badge variant="outline">{card.type}</Badge>
+            <div className="relative z-10 mx-auto aspect-[3/4] w-full max-w-[240px]">
+              <img
+                src={card.image}
+                alt={card.name}
+                className="h-full w-full object-contain drop-shadow-[0_16px_30px_rgba(0,0,0,0.6)]"
+              />
             </div>
 
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <div className="mt-4 flex items-center gap-2">
+              <span className="rounded-md border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
+                {card.badge}
+              </span>
+              <span className="rounded-md border border-border bg-card/80 px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
+                {card.type}
+              </span>
+            </div>
+          </div>
+
+          {/* Details Column */}
+          <div className="flex flex-col p-6 sm:col-span-7">
+            <DialogHeader className="text-left">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      {card.set}
+                    </span>
+                    <span className="text-xs text-muted-foreground">·</span>
+                    <span className="text-xs font-medium text-muted-foreground">{card.releaseYear}</span>
+                  </div>
+                  <DialogTitle className="mt-1 text-2xl font-black tracking-tight text-foreground">
+                    {card.name}
+                  </DialogTitle>
+                </div>
+                <Badge variant="outline" className="shrink-0 border-border bg-card font-bold text-xs">
+                  {card.rarity}
+                </Badge>
+              </div>
+              <DialogDescription className="sr-only">
+                Detalhes completos da carta Pokémon {card.name}
+              </DialogDescription>
+            </DialogHeader>
+
+            <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
               {card.description}
             </p>
 
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <div className="rounded-lg border border-border/60 bg-background/50 p-3">
-                <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                  <Shield className="h-3.5 w-3.5" />
-                  HP
+            {/* Combat & Card Stats */}
+            <div className="mt-6">
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                Atributos da Carta
+              </h4>
+              <div className="grid grid-cols-2 gap-2.5">
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground">
+                    <Shield className="h-3.5 w-3.5 text-primary" />
+                    Pontos de Vida (HP)
+                  </div>
+                  <p className="mt-1 text-base font-black text-foreground">{card.hp} HP</p>
                 </div>
-                <p className="mt-1 text-lg font-bold text-foreground">{card.hp}</p>
-              </div>
-              <div className="rounded-lg border border-border/60 bg-background/50 p-3">
-                <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                  <Zap className="h-3.5 w-3.5" />
-                  Ataque
+
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground">
+                    <Zap className="h-3.5 w-3.5 text-amber-400" />
+                    Ataque Principal
+                  </div>
+                  <p className="mt-1 truncate text-xs font-bold text-foreground">{card.attack}</p>
                 </div>
-                <p className="mt-1 text-sm font-semibold text-foreground">{card.attack}</p>
-              </div>
-              <div className="rounded-lg border border-border/60 bg-background/50 p-3">
-                <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                  <Package className="h-3.5 w-3.5" />
-                  Fraqueza
+
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground">
+                    <Package className="h-3.5 w-3.5 text-red-400" />
+                    Fraqueza
+                  </div>
+                  <p className="mt-1 text-xs font-bold text-foreground">{card.weakness}</p>
                 </div>
-                <p className="mt-1 text-sm font-semibold text-foreground">{card.weakness}</p>
-              </div>
-              <div className="rounded-lg border border-border/60 bg-background/50 p-3">
-                <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                  <Layers className="h-3.5 w-3.5" />
-                  Resistência
+
+                <div className="rounded-xl border border-border bg-card/60 p-3">
+                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground">
+                    <Layers className="h-3.5 w-3.5 text-blue-400" />
+                    Resistência
+                  </div>
+                  <p className="mt-1 text-xs font-bold text-foreground">{card.resistance}</p>
                 </div>
-                <p className="mt-1 text-sm font-semibold text-foreground">{card.resistance}</p>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4">
-              <div>
-                <p className="text-xs text-muted-foreground">Preço</p>
-                <p className="text-2xl font-bold text-foreground">
-                  R$ {card.price.toFixed(2).replace(".", ",")}
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs text-muted-foreground">Custo de recuo</p>
-                <p className="text-lg font-semibold text-foreground">{card.retreatCost}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs text-muted-foreground">Artista</p>
-                <p className="text-sm font-medium text-foreground">{card.artist}</p>
+            {/* Collector info footer */}
+            <div className="mt-6 border-t border-border/60 pt-4">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <User className="h-3.5 w-3.5 text-primary" />
+                  <span>Ilustrador: <strong className="text-foreground">{card.artist}</strong></span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground block">Valor de Mercado</span>
+                  <span className="text-lg font-black text-primary">
+                    R$ {card.price.toFixed(2).replace(".", ",")}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -134,81 +152,43 @@ export function CardHoverContent({ card }: { card: CardDetails }) {
   return (
     <div className="w-72">
       <div className="flex items-start gap-3">
-        <img
-          src={card.image}
-          alt={card.name}
-          className="h-24 w-16 shrink-0 rounded-md object-cover shadow-lg shadow-primary/20"
-        />
+        <div className="h-20 w-14 shrink-0 overflow-hidden rounded-lg bg-black/20 p-1">
+          <img
+            src={card.image}
+            alt={card.name}
+            className="h-full w-full object-contain"
+          />
+        </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-2">
-            <h4 className="text-sm font-bold text-foreground">{card.name}</h4>
-            <div className="flex items-center gap-1">
-              <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
-              <span className="text-xs font-medium text-muted-foreground">4.9</span>
-            </div>
-          </div>
-          <p className="mt-0.5 text-xs text-muted-foreground">{card.set} · {card.releaseYear}</p>
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            <Badge variant="secondary" className="bg-primary/10 text-primary text-[10px] px-2 py-0.5">
+          <h4 className="truncate text-xs font-bold text-foreground">{card.name}</h4>
+          <p className="text-[10px] text-muted-foreground">{card.set} · {card.releaseYear}</p>
+          <div className="mt-1.5 flex flex-wrap gap-1">
+            <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[9px] font-bold text-primary">
               {card.rarity}
-            </Badge>
-            <Badge variant="outline" className="text-[10px] px-2 py-0.5">
+            </span>
+            <span className="rounded bg-secondary px-1.5 py-0.5 text-[9px] font-semibold text-muted-foreground">
               {card.type}
-            </Badge>
+            </span>
           </div>
         </div>
       </div>
 
-      <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-        {card.description}
-      </p>
-
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <div className="rounded-md border border-border/60 bg-background/50 p-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
-            <Shield className="h-3 w-3" />
-            HP
-          </div>
-          <p className="mt-0.5 text-sm font-bold text-foreground">{card.hp}</p>
+      <div className="mt-3 grid grid-cols-2 gap-1.5 text-[10px]">
+        <div className="rounded-lg border border-border bg-card/60 p-1.5">
+          <span className="text-muted-foreground block">HP</span>
+          <span className="font-bold text-foreground">{card.hp}</span>
         </div>
-        <div className="rounded-md border border-border/60 bg-background/50 p-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
-            <Zap className="h-3 w-3" />
-            Ataque
-          </div>
-          <p className="mt-0.5 truncate text-xs font-semibold text-foreground">{card.attack}</p>
-        </div>
-        <div className="rounded-md border border-border/60 bg-background/50 p-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
-            <Package className="h-3 w-3" />
-            Fraqueza
-          </div>
-          <p className="mt-0.5 text-xs font-semibold text-foreground">{card.weakness}</p>
-        </div>
-        <div className="rounded-md border border-border/60 bg-background/50 p-2">
-          <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">
-            <Layers className="h-3 w-3" />
-            Resistência
-          </div>
-          <p className="mt-0.5 text-xs font-semibold text-foreground">{card.resistance}</p>
+        <div className="rounded-lg border border-border bg-card/60 p-1.5">
+          <span className="text-muted-foreground block truncate">Ataque</span>
+          <span className="font-bold text-foreground truncate block">{card.attack}</span>
         </div>
       </div>
 
-      <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-2.5">
-        <div>
-          <p className="text-[10px] text-muted-foreground">Preço</p>
-          <p className="text-base font-bold text-foreground">
-            R$ {card.price.toFixed(2).replace(".", ",")}
-          </p>
-        </div>
-        <div className="text-right">
-          <p className="text-[10px] text-muted-foreground">Recuo</p>
-          <p className="text-sm font-semibold text-foreground">{card.retreatCost}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-[10px] text-muted-foreground">Artista</p>
-          <p className="text-xs font-medium text-foreground">{card.artist}</p>
-        </div>
+      <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-2 text-xs">
+        <span className="text-[10px] text-muted-foreground">Preço à vista</span>
+        <span className="font-black text-primary">
+          R$ {card.price.toFixed(2).replace(".", ",")}
+        </span>
       </div>
     </div>
   );
