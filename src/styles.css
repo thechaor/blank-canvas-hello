@@ -217,6 +217,99 @@
   animation: bubble-float linear infinite;
 }
 
+/* Swimming Fish Keyframes & Classes */
+.swimming-fish-lane {
+  will-change: transform;
+  pointer-events: none;
+}
+
+.fish-swim-ltr {
+  animation: fish-swim-across-ltr linear infinite;
+}
+
+.fish-swim-rtl {
+  animation: fish-swim-across-rtl linear infinite;
+}
+
+.fish-undulation {
+  animation: fish-undulate 2.4s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+.fish-tail-fin {
+  animation: fish-tail-wag 0.45s ease-in-out infinite alternate;
+}
+
+.fish-side-fin {
+  animation: fish-side-fin-flap 0.65s ease-in-out infinite alternate;
+}
+
+@keyframes fish-swim-across-ltr {
+  0% {
+    transform: translate3d(-15vw, 0, 0);
+  }
+  25% {
+    transform: translate3d(22vw, -18px, 0);
+  }
+  50% {
+    transform: translate3d(55vw, 14px, 0);
+  }
+  75% {
+    transform: translate3d(85vw, -12px, 0);
+  }
+  100% {
+    transform: translate3d(115vw, 4px, 0);
+  }
+}
+
+@keyframes fish-swim-across-rtl {
+  0% {
+    transform: translate3d(115vw, 0, 0);
+  }
+  25% {
+    transform: translate3d(80vw, 16px, 0);
+  }
+  50% {
+    transform: translate3d(48vw, -20px, 0);
+  }
+  75% {
+    transform: translate3d(18vw, 10px, 0);
+  }
+  100% {
+    transform: translate3d(-15vw, -6px, 0);
+  }
+}
+
+@keyframes fish-undulate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-4deg);
+  }
+  100% {
+    transform: translateY(8px) rotate(4deg);
+  }
+}
+
+@keyframes fish-tail-wag {
+  0% {
+    transform: rotate(-18deg) scaleX(0.92);
+  }
+  100% {
+    transform: rotate(18deg) scaleX(1.08);
+  }
+}
+
+@keyframes fish-side-fin-flap {
+  0% {
+    transform: rotate(-12deg) scale(0.9);
+  }
+  100% {
+    transform: rotate(20deg) scale(1.1);
+  }
+}
+
 @keyframes fill-aquarium {
   0% {
     height: 6vh;
@@ -396,7 +489,13 @@
   .water-surface-wave,
   .water-surface-wave-secondary,
   .aquarium-bubble,
-  .water-caustics {
+  .water-caustics,
+  .swimming-fish-lane,
+  .fish-swim-ltr,
+  .fish-swim-rtl,
+  .fish-undulation,
+  .fish-tail-fin,
+  .fish-side-fin {
     animation: none !important;
     transition: none !important;
     display: none !important;
