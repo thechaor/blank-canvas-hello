@@ -17,6 +17,7 @@ import { CartProvider, useCart } from "../contexts/cart-context";
 import { AuthProvider, useAuth } from "../contexts/auth-context";
 import { CartIcon } from "../components/cart-icon";
 import { LoginDialog } from "../components/login-dialog";
+import { RainEffect } from "../components/rain-effect";
 
 function NotFoundComponent() {
   return (
@@ -343,7 +344,8 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
-          <div className="flex min-h-screen flex-col bg-background">
+          <div className="relative min-h-screen flex flex-col bg-background overflow-x-hidden">
+            <RainEffect />
             <div className="relative z-10 flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">
