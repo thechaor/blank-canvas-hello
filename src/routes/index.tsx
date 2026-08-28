@@ -319,11 +319,17 @@ function Index() {
   const { isAuthenticated, user } = useAuth();
 
   const scrollToProducts = () => {
-    document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("produtos");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const scrollToCollections = () => {
-    document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("produtos");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const handleViewDetails = (product: CardDetails) => {
@@ -418,7 +424,7 @@ function Index() {
       </section>
 
       {/* Products Section */}
-      <section id="produtos" className="relative bg-background/10 py-16 sm:py-20">
+      <section id="produtos" className="relative bg-background/10 py-16 sm:py-20 scroll-mt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center sm:mb-12">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
