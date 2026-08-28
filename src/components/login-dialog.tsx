@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, LogIn, Mail, Lock, CheckCircle2, Sparkles } from "lucide-react";
+import { Loader2, LogIn, Mail, Lock, CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,121 +41,105 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
         setPassword("");
         onOpenChange(false);
         onSuccess?.();
-      }, 800);
+      }, 700);
     } else {
-      setError("E-mail ou senha inválidos. A senha deve ter pelo menos 6 caracteres.");
+      setError("E-mail ou senha incorretos. A senha deve ter ao menos 6 dígitos.");
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md overflow-hidden border-2 border-primary/40 bg-gradient-to-b from-card via-card to-secondary/80 shadow-[0_0_40px_rgba(99,102,241,0.15)]">
-        {/* Pokébola decorativa no topo */}
-        <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-to-b from-red-500 via-red-500 to-slate-900 opacity-20 blur-sm" />
-        <div className="pointer-events-none absolute -bottom-20 -left-20 h-44 w-44 rounded-full bg-gradient-to-b from-yellow-400 via-yellow-400 to-slate-900 opacity-10 blur-md" />
-
-        <DialogHeader className="relative">
-          <div className="mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary/50 bg-gradient-to-b from-red-500 to-red-600 shadow-lg shadow-red-500/30">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-slate-900 bg-gradient-to-b from-slate-100 to-slate-300">
-              <div className="h-3 w-3 rounded-full border-2 border-slate-900 bg-white shadow-inner" />
-            </div>
+      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-border/80 bg-card/95 p-6 shadow-2xl backdrop-blur-2xl">
+        <DialogHeader className="text-center">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary to-blue-400 text-primary-foreground shadow-lg shadow-primary/25">
+            <Sparkles className="h-6 w-6" />
           </div>
-          <DialogTitle className="text-center text-2xl font-black tracking-tight text-foreground">
-            {user ? (
-              <span className="text-gradient">Bem-vindo de volta!</span>
-            ) : (
-              <>
-                <span className="text-gradient">Entrar</span>{" "}
-                <span className="text-primary">na sua conta</span>
-              </>
-            )}
+          <DialogTitle className="text-xl font-black tracking-tight text-foreground">
+            {user ? "Conta Conectada" : "Acesso de Colecionador"}
           </DialogTitle>
-          <DialogDescription className="text-center">
+          <DialogDescription className="text-xs text-muted-foreground">
             {user
               ? `Você está logado como ${user.email}`
-              : "Acesse sua conta para finalizar suas compras mais rápido."}
+              : "Entre para salvar seus pedidos, favoritos e agilizar o checkout."}
           </DialogDescription>
         </DialogHeader>
 
         {isSuccess ? (
-          <div className="relative flex flex-col items-center justify-center py-8">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-emerald-400 to-emerald-600 shadow-lg shadow-emerald-500/30">
-              <CheckCircle2 className="h-8 w-8 text-white" />
+          <div className="flex flex-col items-center justify-center py-6 text-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400">
+              <CheckCircle2 className="h-7 w-7" />
             </div>
-            <p className="mt-4 text-sm font-bold text-foreground">Login realizado com sucesso!</p>
-            <p className="mt-1 text-xs text-muted-foreground">Você é um Mestre Pokémon!</p>
+            <p className="mt-3 text-sm font-bold text-foreground">Acesso autenticado com sucesso!</p>
+            <p className="mt-1 text-xs text-muted-foreground">Redirecionando...</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="relative space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="login-email" className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
-                <Mail className="h-3.5 w-3.5 text-primary" />
+          <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="login-email" className="text-xs font-semibold text-muted-foreground">
                 E-mail
               </Label>
               <div className="relative">
+                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   id="login-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com"
-                  className="h-11 border-2 border-primary/30 bg-background/60 pl-10 text-foreground shadow-inner transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:shadow-[0_0_12px_rgba(99,102,241,0.2)]"
+                  placeholder="colecionador@tcgvault.com"
+                  className="h-10 rounded-xl bg-background/60 pl-9 text-xs"
                   autoComplete="email"
                   required
                 />
-                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary" />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="login-password" className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
-                <Lock className="h-3.5 w-3.5 text-primary" />
+            <div className="space-y-1.5">
+              <Label htmlFor="login-password" className="text-xs font-semibold text-muted-foreground">
                 Senha
               </Label>
               <div className="relative">
+                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   id="login-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Sua senha"
-                  className="h-11 border-2 border-primary/30 bg-background/60 pl-10 text-foreground shadow-inner transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:shadow-[0_0_12px_rgba(99,102,241,0.2)]"
+                  placeholder="••••••••"
+                  className="h-10 rounded-xl bg-background/60 pl-9 text-xs"
                   autoComplete="current-password"
                   required
                 />
-                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary" />
               </div>
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2.5" role="alert">
-                <Sparkles className="h-4 w-4 shrink-0 text-destructive" />
-                <p className="text-sm font-medium text-destructive">{error}</p>
+              <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs font-medium text-destructive">
+                {error}
               </div>
             )}
 
             <Button
               type="submit"
-              className="h-12 w-full bg-gradient-to-r from-primary via-primary to-primary/80 text-base font-bold shadow-lg shadow-primary/30 transition-all hover:from-primary/90 hover:via-primary/90 hover:to-primary/70 hover:shadow-primary/40"
+              className="h-11 w-full rounded-xl text-xs font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.01]"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="h-5 w-5 animate-spin" />
-                  Capturando...
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  Validando Credenciais...
                 </>
               ) : (
                 <>
-                  <LogIn className="h-5 w-5" />
-                  Entrar
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Entrar na Conta
                 </>
               )}
             </Button>
 
-            <p className="text-center text-xs text-muted-foreground">
-              <Sparkles className="mr-1 inline h-3 w-3 text-yellow-400" />
-              Treinador, sua aventura começa aqui!
-            </p>
+            <div className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
+              <ShieldCheck className="h-3.5 w-3.5 text-primary" />
+              <span>Ambiente criptografado e seguro</span>
+            </div>
           </form>
         )}
       </DialogContent>
