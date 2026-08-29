@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 220 25% 12%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 25% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 12%;
-    --primary: 200 90% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 94%;
-    --secondary-foreground: 220 25% 12%;
-    --muted: 220 12% 92%;
-    --muted-foreground: 220 12% 45%;
-    --accent: 200 85% 50%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 75% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 12% 88%;
-    --input: 220 12% 88%;
-    --ring: 200 90% 45%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 22%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 199 89% 48%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 220 25% 5%;
-    --foreground: 220 15% 92%;
-    --card: 220 25% 7%;
-    --card-foreground: 220 15% 92%;
-    --popover: 220 25% 7%;
-    --popover-foreground: 220 15% 92%;
-    --primary: 200 90% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 20% 10%;
-    --secondary-foreground: 220 15% 92%;
-    --muted: 220 18% 12%;
-    --muted-foreground: 220 12% 55%;
-    --accent: 200 85% 45%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 18% 14%;
-    --input: 220 18% 14%;
-    --ring: 200 90% 50%;
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 52%;
+    --primary-foreground: 222 47% 8%;
+    --secondary: 217 33% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 15%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 20%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 199 89% 52%;
   }
 
   * {
@@ -54,26 +54,28 @@
 
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
     overflow-x: hidden;
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.2);
+    background: hsl(var(--primary) / 0.3);
     color: hsl(var(--foreground));
   }
 
   ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
@@ -81,7 +83,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.3);
+    background: hsl(var(--border));
     border-radius: 9999px;
   }
 
@@ -92,348 +94,68 @@
 
 @layer components {
   .glass-panel {
-    background: hsl(var(--card) / 0.6);
+    background: hsl(var(--card) / 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.6);
+  }
+
+  .glass-card {
+    background: hsl(var(--card) / 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border) / 0.5);
-  }
-
-  .glass-panel-hover {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .glass-panel-hover:hover {
-    border-color: hsl(var(--primary) / 0.25);
-    box-shadow: 0 8px 40px -12px hsl(var(--primary) / 0.15);
-    transform: translateY(-2px);
+    border: 1px solid hsl(var(--border) / 0.6);
+    border-radius: var(--radius);
   }
 
   .tech-gradient-text {
-    background: linear-gradient(135deg, hsl(var(--foreground)) 20%, hsl(var(--primary)) 80%);
+    background: linear-gradient(135deg, hsl(var(--foreground)) 20%, hsl(var(--primary)) 85%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-  }
-
-  .tech-border-glow {
-    position: relative;
-    border: 1px solid hsl(var(--border) / 0.4);
-  }
-
-  .tech-border-glow::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.08), transparent 50%, hsl(var(--primary) / 0.04));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-
-  .tech-border-glow:hover::before {
-    opacity: 1;
   }
 
   .tech-chip {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.2rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    background: hsl(var(--primary) / 0.08);
+    background: hsl(var(--primary) / 0.1);
     color: hsl(var(--primary));
-    border: 1px solid hsl(var(--primary) / 0.12);
+    border: 1px solid hsl(var(--primary) / 0.2);
   }
 
   .tech-chip-filled {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.2rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 9999px;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
-    box-shadow: 0 4px 20px hsl(var(--primary) / 0.25);
-  }
-
-  .tech-grid-pattern {
-    background-image:
-      linear-gradient(hsl(var(--border) / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  .tech-glow-dot {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    opacity: 0.12;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 5s ease-in-out infinite;
-  }
-
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.25; }
-  }
-
-  .animate-shimmer {
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      hsl(var(--primary) / 0.04) 50%,
-      transparent 60%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.3);
   }
 
   .tech-card {
     position: relative;
-    background: hsl(var(--card) / 0.5);
-    border: 1px solid hsl(var(--border) / 0.3);
+    background: hsl(var(--card) / 0.7);
+    border: 1px solid hsl(var(--border) / 0.5);
     border-radius: var(--radius);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .tech-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, hsl(var(--border) / 0.08), transparent 50%, hsl(var(--border) / 0.04));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  .tech-card:hover {
-    border-color: hsl(var(--primary) / 0.15);
-    box-shadow: 0 8px 40px -12px hsl(var(--primary) / 0.1);
-    transform: translateY(-2px);
-  }
-
-  .tech-card-hover {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .tech-card-hover:hover {
-    border-color: hsl(var(--primary) / 0.2);
-    box-shadow: 0 12px 48px -12px hsl(var(--primary) / 0.15);
-    transform: translateY(-4px);
-  }
-
-  .rain-drop {
-    background: linear-gradient(180deg, hsl(var(--primary) / 0.6), hsl(var(--primary) / 0.1));
-    border-radius: 0 0 9999px 9999px;
-    animation: rainFall linear infinite;
-  }
-
-  @keyframes rainFall {
-    0% { transform: translateY(0); opacity: 0.8; }
-    100% { transform: translateY(calc(100vh + 20px)); opacity: 0.2; }
-  }
-
-  .water-tank {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    background: linear-gradient(180deg, 
-      hsl(220 30% 8% / 0.95) 0%,
-      hsl(220 25% 12% / 0.9) 40%,
-      hsl(220 20% 18% / 0.85) 70%,
-      hsl(220 15% 22% / 0.8) 100%
-    );
-  }
-
-  .water-surface-wave {
-    position: absolute;
-    top: -8px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    animation: waveFlow 12s ease-in-out infinite alternate;
-    transform-origin: center;
-    fill: hsl(200 60% 45% / 0.15);
-  }
-
-  .water-surface-wave-secondary {
-    position: absolute;
-    top: -4px;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    animation: waveFlow 18s ease-in-out infinite alternate-reverse;
-    transform-origin: center;
-    fill: hsl(200 60% 55% / 0.08);
-  }
-
-  @keyframes waveFlow {
-    0% { transform: translateX(-5%) scaleY(1); }
-    50% { transform: translateX(5%) scaleY(0.8); }
-    100% { transform: translateX(-3%) scaleY(1.1); }
-  }
-
-  .water-surface-glow {
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background: linear-gradient(180deg, 
-      hsl(200 70% 60% / 0.1) 0%,
-      transparent 100%
-    );
-    filter: blur(4px);
-    animation: glowPulse 4s ease-in-out infinite;
-  }
-
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-
-  .water-body {
-    position: absolute;
-    inset: 20px 0 0 0;
-  }
-
-  .water-caustics {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 20%, hsl(200 60% 50% / 0.04) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 80%, hsl(200 50% 40% / 0.03) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .aquarium-bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, hsl(200 100% 90% / 0.4), hsl(200 100% 80% / 0.1));
-    border: 1px solid hsl(200 100% 90% / 0.15);
-    animation: bubbleRise linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes bubbleRise {
-    0% { transform: translateY(0) scale(1) translateX(0); opacity: 0.7; }
-    25% { transform: translateY(-25vh) scale(1.05) translateX(8px); opacity: 0.8; }
-    50% { transform: translateY(-50vh) scale(0.95) translateX(-5px); opacity: 0.6; }
-    75% { transform: translateY(-75vh) scale(1.02) translateX(10px); opacity: 0.4; }
-    100% { transform: translateY(-105vh) scale(0.9) translateX(-8px); opacity: 0; }
-  }
-
-  .swimming-fish-lane {
-    position: absolute;
-    width: 80px;
-    height: 40px;
-    animation: fishSwimLane linear infinite;
-    pointer-events: none;
-  }
-
-  .fish-swim-ltr {
-    animation-name: fishSwimLtr;
-  }
-
-  .fish-swim-rtl {
-    animation-name: fishSwimRtl;
-  }
-
-  @keyframes fishSwimLtr {
-    0% { transform: translateX(-100px) scaleX(1); }
-    100% { transform: translateX(calc(100vw + 100px)) scaleX(1); }
-  }
-
-  @keyframes fishSwimRtl {
-    0% { transform: translateX(calc(100vw + 100px)) scaleX(-1); }
-    100% { transform: translateX(-100px) scaleX(-1); }
-  }
-
-  .fish-undulation {
-    animation: fishUndulate 1.5s ease-in-out infinite;
-    transform-origin: center;
-  }
-
-  @keyframes fishUndulate {
-    0%, 100% { transform: rotate(0deg) scaleY(1); }
-    25% { transform: rotate(4deg) scaleY(0.97); }
-    75% { transform: rotate(-4deg) scaleY(1.03); }
-  }
-
-  .fish-tail-fin {
-    animation: tailSway 0.8s ease-in-out infinite alternate;
-    transform-origin: 68px 30px;
-  }
-
-  @keyframes tailSway {
-    0% { transform: rotate(-6deg); }
-    100% { transform: rotate(6deg); }
-  }
-
-  .fish-side-fin {
-    animation: finFlap 0.6s ease-in-out infinite alternate;
-    transform-origin: 38px 32px;
-  }
-
-  @keyframes finFlap {
-    0% { transform: rotate(0deg) scaleX(1); }
-    100% { transform: rotate(8deg) scaleX(0.9); }
-  }
-
-  .pokemon-card-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .pokemon-card-float {
-    position: absolute;
-    animation: cardFloat linear infinite alternate;
-    user-select: none;
-    opacity: 0.12;
-    filter: blur(0.5px);
-    transition: opacity 0.3s ease;
-  }
-
-  @keyframes cardFloat {
-    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-    33% { transform: translate(var(--card-float-x, 12px), var(--card-float-y, -16px)) rotate(4deg) scale(1.02); }
-    66% { transform: translate(calc(var(--card-float-x, 12px) * -0.6), calc(var(--card-float-y, -16px) * 0.7)) rotate(-3deg) scale(0.98); }
-    100% { transform: translate(var(--card-float-x, 12px), calc(var(--card-float-y, -16px) * 0.4)) rotate(2deg) scale(1.01); }
-  }
-
-  .pokemon-card-bg:hover .pokemon-card-float {
-    opacity: 0.18;
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 12px 32px -8px hsl(var(--primary) / 0.2);
+    transform: translateY(-3px);
   }
 }
