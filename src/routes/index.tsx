@@ -48,7 +48,7 @@ const products: CardDetails[] = [
     set: "Brilliant Stars",
     price: 249.90,
     rarity: "Ultra Rare",
-    image: "[https://images.pokemontcg.io/swsh9/154.png](https://images.pokemontcg.io/swsh9/154.png)",
+    image: "https://images.pokemontcg.io/swsh9/154.png",
     type: "Fogo",
     color: "from-orange-500/20 to-red-500/20",
     badge: "Destaque",
@@ -67,7 +67,7 @@ const products: CardDetails[] = [
     set: "Vivid Voltage",
     price: 189.90,
     rarity: "Ultra Rare",
-    image: "[https://images.pokemontcg.io/swsh4/188.png](https://images.pokemontcg.io/swsh4/188.png)",
+    image: "https://images.pokemontcg.io/swsh4/188.png",
     type: "Elétrico",
     color: "from-yellow-500/20 to-amber-500/20",
     badge: "Mais Vendido",
@@ -86,7 +86,7 @@ const products: CardDetails[] = [
     set: "Pokémon GO",
     price: 159.90,
     rarity: "VSTAR",
-    image: "[https://images.pokemontcg.io/sgo/30.png](https://images.pokemontcg.io/sgo/30.png)",
+    image: "https://images.pokemontcg.io/sgo/30.png",
     type: "Psíquico",
     color: "from-purple-500/20 to-violet-500/20",
     badge: "Novo",
@@ -105,7 +105,7 @@ const products: CardDetails[] = [
     set: "Fusion Strike",
     price: 199.90,
     rarity: "Ultra Rare",
-    image: "[https://images.pokemontcg.io/swsh8/157.png](https://images.pokemontcg.io/swsh8/157.png)",
+    image: "https://images.pokemontcg.io/swsh8/157.png",
     type: "Fantasma",
     color: "from-indigo-500/20 to-purple-500/20",
     badge: "Raro",
@@ -124,7 +124,7 @@ const products: CardDetails[] = [
     set: "Silver Tempest",
     price: 179.90,
     rarity: "Ultra Rare",
-    image: "[https://images.pokemontcg.io/swsh12/186.png](https://images.pokemontcg.io/swsh12/186.png)",
+    image: "https://images.pokemontcg.io/swsh12/186.png",
     type: "Voador",
     color: "from-sky-500/20 to-blue-500/20",
     badge: "Lendário",
@@ -143,7 +143,7 @@ const products: CardDetails[] = [
     set: "Evolving Skies",
     price: 299.90,
     rarity: "Secret Rare",
-    image: "[https://images.pokemontcg.io/swsh7/218.png](https://images.pokemontcg.io/swsh7/218.png)",
+    image: "https://images.pokemontcg.io/swsh7/218.png",
     type: "Dragão",
     color: "from-emerald-500/20 to-green-500/20",
     badge: "Colecionador",
@@ -156,6 +156,120 @@ const products: CardDetails[] = [
     artist: "PLANETA Igarashi",
     releaseYear: 2021,
   },
+  {
+    id: 7,
+    name: "Umbreon VMAX",
+    set: "Evolving Skies",
+    price: 349.90,
+    rarity: "Secret Rare",
+    image: "https://images.pokemontcg.io/swsh7/215.png",
+    type: "Sombrio",
+    color: "from-slate-600/20 to-black/20",
+    badge: "Alt Art",
+    description: "Conhecido como 'Moonbreon', esta carta é a joia da coroa de Evolving Skies. Arte espetacular e altíssima demanda.",
+    hp: 310,
+    attack: "Max Darkness",
+    weakness: "Grama",
+    resistance: "Psíquico",
+    retreatCost: 2,
+    artist: "Kiyotaka Oshiyama",
+    releaseYear: 2021,
+  },
+  {
+    id: 8,
+    name: "Arceus VSTAR",
+    set: "Brilliant Stars",
+    price: 139.90,
+    rarity: "Secret Rare",
+    image: "https://images.pokemontcg.io/swsh9/176.png",
+    type: "Normal",
+    color: "from-gray-300/20 to-yellow-100/20",
+    badge: "Competitivo",
+    description: "O criador do universo Pokémon traz seu poderoso VSTAR Power para acelerar energias e buscar cartas cruciais.",
+    hp: 280,
+    attack: "Trinity Nova",
+    weakness: "Lutador",
+    resistance: "Nenhuma",
+    retreatCost: 2,
+    artist: "5ban Graphics",
+    releaseYear: 2022,
+  },
+  {
+    id: 9,
+    name: "Giratina V",
+    set: "Lost Origin",
+    price: 289.90,
+    rarity: "Secret Rare",
+    image: "https://images.pokemontcg.io/swsh11/186.png",
+    type: "Dragão",
+    color: "from-teal-600/20 to-purple-800/20",
+    badge: "Alt Art",
+    description: "A arte deslumbrante que quebra a realidade. Giratina domina a Zona Perdida com um visual caótico e maravilhoso.",
+    hp: 220,
+    attack: "Abyss Seeker",
+    weakness: "Nenhuma",
+    resistance: "Nenhuma",
+    retreatCost: 2,
+    artist: "Shinji Kanda",
+    releaseYear: 2022,
+  },
+  {
+    id: 10,
+    name: "Mew VMAX",
+    set: "Fusion Strike",
+    price: 199.90,
+    rarity: "Secret Rare",
+    image: "https://images.pokemontcg.io/swsh8/269.png",
+    type: "Psíquico",
+    color: "from-pink-400/20 to-purple-400/20",
+    badge: "Meta",
+    description: "O motor do deck Fusion Strike. Copia ataques de seus aliados e compra cartas até a mão ficar cheia.",
+    hp: 310,
+    attack: "Cross Fusion Strike",
+    weakness: "Sombrio",
+    resistance: "Lutador",
+    retreatCost: 0,
+    artist: "Akira Egawa",
+    releaseYear: 2021,
+  },
+  {
+    id: 11,
+    name: "Machamp V",
+    set: "Astral Radiance",
+    price: 119.90,
+    rarity: "Secret Rare",
+    image: "https://images.pokemontcg.io/swsh10/172.png",
+    type: "Lutador",
+    color: "from-orange-700/20 to-amber-800/20",
+    badge: "Alt Art",
+    description: "Machamp carregando sacos de compras na cidade. Uma arte incrivelmente charmosa e cheia de personalidade.",
+    hp: 220,
+    attack: "Revenge Buster",
+    weakness: "Psíquico",
+    resistance: "Nenhuma",
+    retreatCost: 3,
+    artist: "Shinya Komi",
+    releaseYear: 2022,
+  },
+  {
+    id: 12,
+    name: "Blaziken VMAX",
+    set: "Chilling Reign",
+    price: 219.90,
+    rarity: "Secret Rare",
+    image: "https://images.pokemontcg.io/swsh6/201.png",
+    type: "Fogo",
+    color: "from-red-500/20 to-orange-400/20",
+    badge: "Alt Art",
+    description: "Blaziken e outros Pokémon numa vibrante arte dinâmica de teto. Muito procurada pelos fãs da terceira geração.",
+    hp: 320,
+    attack: "Max Blaze",
+    weakness: "Água",
+    resistance: "Nenhuma",
+    retreatCost: 2,
+    artist: "Kagemaru Himeno",
+    releaseYear: 2021,
+  }
 ];
 
 function useRevealOnScroll() {
@@ -230,9 +344,9 @@ function ProductCard({
       className={`group relative flex flex-col transition-all duration-500 ease-out ${
         visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
-      style={{ transitionDelay: `${index * 60}ms` }}
+      style={{ transitionDelay: `${(index % 6) * 60}ms` }}
     >
-      <HoverCard closeDelay="{100}" openDelay="{150}">
+      <HoverCard closeDelay={100} openDelay={150}>
         <HoverCardTrigger asChild>
           <div
             className="tech-card tech-card-hover relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/40 p-5 transition-all duration-300 cursor-pointer bg-card/40 backdrop-blur-md hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
@@ -338,7 +452,7 @@ function ProductCard({
                     </button>
                   </div>
 
-                  <Button className="h-8 flex-1 gap-1.5 rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" disabled="{isAdding" isAdded} onClick="{handleAddToCart}" size="sm" type="button" ||>
+                  <Button className="h-8 flex-1 gap-1.5 rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" disabled={isAdding || isAdded} onClick={handleAddToCart} size="sm" type="button">
                     {isAdding ? (
                       <>
                         <Loader2 className="h-3.5 w-3.5 animate-spin"/>
@@ -361,8 +475,8 @@ function ProductCard({
             </div>
           </div>
         </HoverCardTrigger>
-        <HoverCardContent align="center" className="z-50 w-auto border-border/40 bg-popover/90 p-4 backdrop-blur-2xl rounded-2xl shadow-2xl" side="right" sideOffset="{14}">
-          <CardHoverContent card="{product}"/>
+        <HoverCardContent align="center" className="z-50 w-auto border-border/40 bg-popover/90 p-4 backdrop-blur-2xl rounded-2xl shadow-2xl" side="right" sideOffset={14}>
+          <CardHoverContent card={product}/>
         </HoverCardContent>
       </HoverCard>
     </div>
@@ -370,11 +484,12 @@ function ProductCard({
 }
 
 function Index() {
-  const [selectedCard, setSelectedCard] = useState<CardDetails null |>(null);
+  const [selectedCard, setSelectedCard] = useState<CardDetails | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
+  const [visibleCount, setVisibleCount] = useState(6);
   const { isAuthenticated } = useAuth();
 
   const handleViewDetails = (product: CardDetails) => {
@@ -389,7 +504,7 @@ function Index() {
     }
   };
 
-  const types = ["all", "Fogo", "Elétrico", "Psíquico", "Fantasma", "Voador", "Dragão"];
+  const types = ["all", "Fogo", "Elétrico", "Psíquico", "Fantasma", "Voador", "Dragão", "Sombrio", "Normal", "Lutador"];
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
@@ -399,6 +514,10 @@ function Index() {
       const matchesType = selectedType === "all" || p.type.toLowerCase() === selectedType.toLowerCase();
       return matchesSearch && matchesType;
     });
+  }, [searchTerm, selectedType]);
+
+  useEffect(() => {
+    setVisibleCount(6);
   }, [searchTerm, selectedType]);
 
   return (
@@ -425,12 +544,12 @@ function Index() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button className="h-11 rounded-2xl px-7 text-sm font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02]" onClick="{scrollToProducts}" size="lg">
+              <Button className="h-11 rounded-2xl px-7 text-sm font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02]" onClick={scrollToProducts} size="lg">
                 Explorar Catálogo
                 <ArrowRight className="ml-2 h-4 w-4"/>
               </Button>
               {!isAuthenticated && (
-                <Button className="h-11 rounded-2xl border-border/40 bg-card/40 px-6 text-sm font-semibold backdrop-blur-sm hover:bg-accent" onClick="{()"> setLoginOpen(true)} size="lg" variant="outline">
+                <Button className="h-11 rounded-2xl border-border/40 bg-card/40 px-6 text-sm font-semibold backdrop-blur-sm hover:bg-accent" onClick={() => setLoginOpen(true)} size="lg" variant="outline">
                   Criar Conta
                 </Button>
               )}
@@ -501,13 +620,13 @@ function Index() {
                 />
               </div>
 
-              <div className="flex flex-wrap gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+              <div className="flex flex-wrap gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-hide">
                 {types.map((t) => (
                   <button
                     key={t}
                     type="button"
                     onClick={() => setSelectedType(t)}
-                    className={`rounded-xl px-2.5 py-1 text-[9px] font-semibold capitalize transition-all ${
+                    className={`rounded-xl px-2.5 py-1 text-[9px] font-semibold capitalize transition-all whitespace-nowrap ${
                       selectedType === t
                         ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
                         : "border border-border/30 bg-card/30 text-muted-foreground hover:text-foreground hover:bg-accent/50"
@@ -521,11 +640,23 @@ function Index() {
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts.map((product, index) => (
-                <ProductCard index="{index}" key="{product.id}" onViewDetails="{handleViewDetails}" product="{product}"/>
-              ))}
-            </div>
+            <>
+              <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredProducts.slice(0, visibleCount).map((product, index) => (
+                  <ProductCard index={index} key={product.id} onViewDetails={handleViewDetails} product={product}/>
+                ))}
+              </div>
+              {visibleCount < filteredProducts.length && (
+                <div className="mt-10 flex justify-center">
+                  <Button className="h-11 rounded-2xl border-border/40 bg-card/40 px-8 text-sm font-semibold backdrop-blur-sm transition-all hover:bg-accent hover:border-primary/30" onClick={() => setVisibleCount(v => v + 6)} 
+                    variant="outline"
+                  >
+                    Explorar Mais Cartas
+                    <Plus className="ml-2 h-4 w-4"/>
+                  </Button>
+                </div>
+              )}
+            </>
           ) : (
             <div className="mt-16 flex flex-col items-center justify-center rounded-2xl border border-border/30 bg-card/30 py-16 text-center backdrop-blur-sm">
               <Info className="h-8 w-8 text-muted-foreground"/>
@@ -533,7 +664,7 @@ function Index() {
               <p className="mt-1 text-xs text-muted-foreground">
                 Tente redefinir seus filtros ou buscar por outro termo.
               </p>
-              <Button className="mt-4 rounded-xl text-xs" onClick="{()"> {
+              <Button className="mt-4 rounded-xl text-xs" onClick={() => {
                   setSearchTerm("");
                   setSelectedType("all");
                 }}
@@ -561,7 +692,7 @@ function Index() {
             Nossos curadores monitoram leilões internacionais e estoques globais para encontrar o card exato que falta no seu fichário.
           </p>
           <div className="mt-6 flex justify-center">
-            <Button className="h-11 rounded-2xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" onClick="{scrollToProducts}">
+            <Button className="h-11 rounded-2xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" onClick={scrollToProducts}>
               Comprar Cartas Agora
               <ArrowRight className="ml-2 h-4 w-4"/>
             </Button>
@@ -569,9 +700,9 @@ function Index() {
         </div>
       </section>
 
-      <CardDetailsDialog card="{selectedCard}" onOpenChange="{setDialogOpen}" open="{dialogOpen}"/>
+      <CardDetailsDialog card={selectedCard} onOpenChange={setDialogOpen} open={dialogOpen}/>
 
-      <LoginDialog onOpenChange="{setLoginOpen}" open="{loginOpen}"/>
+      <LoginDialog onOpenChange={setLoginOpen} open={loginOpen}/>
     </div>
   );
 }
