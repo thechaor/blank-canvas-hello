@@ -1,3 +1,4 @@
+```tsx
 import { useState } from "react";
 import { Loader2, LogIn, Mail, Lock, CheckCircle2, Sparkles, ShieldCheck, Zap } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -49,7 +50,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-border/40 bg-card/80 p-6 shadow-2xl backdrop-blur-2xl">
+      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-border/30 bg-card/80 p-6 shadow-2xl backdrop-blur-2xl">
         <DialogHeader className="text-center">
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/70 text-primary-foreground shadow-lg shadow-primary/25">
             <Sparkles className="h-6 w-6" />
@@ -86,7 +87,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="colecionador@tcgvault.com"
-                  className="h-10 rounded-xl bg-background/30 pl-9 text-xs backdrop-blur-sm"
+                  className="h-10 rounded-2xl bg-background/30 pl-9 text-xs backdrop-blur-sm"
                   autoComplete="email"
                   required
                 />
@@ -105,7 +106,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="h-10 rounded-xl bg-background/30 pl-9 text-xs backdrop-blur-sm"
+                  className="h-10 rounded-2xl bg-background/30 pl-9 text-xs backdrop-blur-sm"
                   autoComplete="current-password"
                   required
                 />
@@ -113,14 +114,14 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
             </div>
 
             {error && (
-              <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs font-medium text-destructive">
+              <div className="rounded-2xl border border-destructive/30 bg-destructive/10 p-3 text-xs font-medium text-destructive">
                 {error}
               </div>
             )}
 
             <Button
               type="submit"
-              className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]"
+              className="h-11 w-full rounded-2xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -146,3 +147,4 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
     </Dialog>
   );
 }
+```
