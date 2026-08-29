@@ -12,11 +12,12 @@ import {
   User, 
   ShieldCheck, 
   Lock, 
+  Truck,
   Sparkles,
-  Truck
+  Shield,
+  CreditCard
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/cart-context";
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
       { title: "Carrinho de Compras - TCG Vault" },
-      { name: "description", content: "Revise suas cartas de Pokémon selecionadas e conclua seu pedido com segurança na TCG Vault." },
+      { name: "description", content: "Revise suas cartas Pokémon selecionadas e conclua seu pedido com segurança total na TCG Vault." },
       { property: "og:title", content: "Carrinho de Compras - TCG Vault" },
       { property: "og:description", content: "Revise suas cartas e finalize a compra com garantia de autenticidade." },
       { property: "og:type", content: "website" },
@@ -74,10 +75,10 @@ function CartPage() {
 
   if (isOrderPlaced) {
     return (
-      <div className="flex min-h-[75vh] items-center justify-center px-4 py-12">
-        <div className="glass-card max-w-md rounded-2xl p-8 text-center shadow-2xl">
+      <div className="mx-auto flex min-h-[75vh] max-w-7xl items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="glass-panel w-full max-w-md rounded-2xl border border-border/30 p-8 text-center shadow-2xl">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400">
-            <Check className="h-8 w-8" />
+            <Check className="h-8 w-8"/>
           </div>
           <h2 className="mt-5 text-2xl font-black tracking-tight text-foreground">
             Pedido Confirmado!
@@ -85,19 +86,19 @@ function CartPage() {
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
             Parabéns, <strong className="text-foreground">{user?.name || formData.name || "Colecionador"}</strong>! Seu pedido foi registrado com sucesso e será enviado com embalagem protetora e seguro total.
           </p>
-          <div className="mt-6 rounded-xl border border-border bg-card/60 p-4 text-left text-xs">
+          <div className="mt-6 rounded-xl border border-border/40 bg-card/60 p-4 text-left text-xs">
             <div className="flex items-center justify-between font-semibold text-foreground">
-              <span>Status</span>
-              <span className="text-primary font-bold">Preparando Envio</span>
+              <span>Status do Envio</span>
+              <span className="font-bold text-primary">Preparando Envio Blindado</span>
             </div>
             <p className="mt-1 text-[11px] text-muted-foreground">
-              O código de rastreamento será enviado para <span className="text-foreground font-medium">{user?.email || formData.email}</span>.
+              O código de rastreamento será enviado para <span className="font-medium text-foreground">{user?.email || formData.email}</span>.
             </p>
           </div>
           <div className="mt-6">
             <Link to="/">
-              <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-md shadow-primary/20">
-                Voltar à Loja
+              <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]">
+                Voltar ao Catálogo
               </Button>
             </Link>
           </div>
@@ -108,20 +109,20 @@ function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="flex min-h-[75vh] items-center justify-center px-4 py-12">
-        <div className="glass-card max-w-md rounded-2xl p-8 text-center shadow-2xl">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary/80 text-muted-foreground">
-            <ShoppingBag className="h-7 w-7" />
+      <div className="mx-auto flex min-h-[75vh] max-w-7xl items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="glass-panel w-full max-w-md rounded-2xl border border-border/30 p-8 text-center shadow-2xl">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/80 text-muted-foreground">
+            <ShoppingBag className="h-8 w-8"/>
           </div>
           <h2 className="mt-4 text-xl font-bold tracking-tight text-foreground">
             Seu carrinho está vazio
           </h2>
           <p className="mt-2 text-xs text-muted-foreground sm:text-sm">
-            Explore nossa coleção de cartas raras para adicionar cards lendários ao seu deck.
+            Explore nossa seleção de cartas raras para adicionar cards lendários e colecionáveis ao seu deck.
           </p>
           <div className="mt-6">
-            <Link to="/" hash="produtos">
-              <Button className="h-11 rounded-xl px-6 text-xs font-bold shadow-md shadow-primary/20">
+            <Link hash="produtos" to="/">
+              <Button className="h-11 rounded-xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
                 Explorar Cartas em Destaque
               </Button>
             </Link>
@@ -133,13 +134,8 @@ function CartPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      {/* Back Link */}
-      <Link
-        to="/"
-        hash="produtos"
-        className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
-      >
-        <ArrowLeft className="h-3.5 w-3.5" />
+      <Link className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground" hash="produtos" to="/">
+        <ArrowLeft className="h-3.5 w-3.5"/>
         Continuar Comprando
       </Link>
 
@@ -152,45 +148,42 @@ function CartPage() {
         </span>
       </div>
 
-      {/* Auth Notification banner */}
       {isAuthenticated ? (
         <div className="mt-4 flex items-center justify-between rounded-xl border border-primary/20 bg-primary/10 px-4 py-2.5 text-xs text-foreground">
           <div className="flex items-center gap-2">
-            <User className="h-4 w-4 text-primary" />
+            <User className="h-4 w-4 text-primary"/>
             <span>Comprando como <strong>{user?.name}</strong> ({user?.email})</span>
           </div>
           <span className="text-[11px] font-semibold text-primary">Checkout Rápido Ativo</span>
         </div>
       ) : (
-        <div className="mt-4 flex flex-col items-start gap-3 rounded-xl border border-border bg-card/60 p-3.5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col items-start gap-3 rounded-xl border border-border/40 bg-card/40 p-3.5 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2.5 text-xs text-muted-foreground">
-            <LogIn className="h-4 w-4 text-primary" />
-            <span>Possui uma conta de colecionador? Entre para preencher automaticamente.</span>
+            <LogIn className="h-4 w-4 text-primary"/>
+            <span>Possui uma conta de colecionador? Acesse para preencher seus dados automaticamente.</span>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8 rounded-lg text-xs font-semibold"
-            onClick={() => setLoginOpen(true)}
-          >
+          <Button className="h-8 rounded-lg border-border/40 bg-card/50 text-xs font-semibold hover:bg-accent" onClick="{()"> setLoginOpen(true)} size="sm" variant="outline">
             Acessar Conta
           </Button>
         </div>
       )}
 
-      {/* Layout Grid */}
       <div className="mt-8 grid gap-8 lg:grid-cols-12">
-        {/* Items List */}
-        <div className="space-y-3 lg:col-span-7">
-          <div className="glass-card rounded-2xl p-4 sm:p-5">
-            <h2 className="mb-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Itens no Carrinho
-            </h2>
+        <div className="space-y-4 lg:col-span-7">
+          <div className="glass-panel rounded-2xl border border-border/30 p-4 sm:p-6">
+            <div className="mb-4 flex items-center justify-between border-b border-border/30 pb-3">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                Itens no Carrinho
+              </h2>
+              <span className="text-[10px] font-semibold text-muted-foreground">
+                Total: {totalItems} {totalItems === 1 ? "item" : "itens"}
+              </span>
+            </div>
 
-            <div className="divide-y divide-border/60">
+            <div className="divide-y divide-border/30">
               {items.map((item) => (
                 <div key={item.id} className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
-                  <div className="flex h-20 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black/20 p-1">
+                  <div className="flex h-20 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black/30 p-1 border border-border/20">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -198,7 +191,7 @@ function CartPage() {
                     />
                   </div>
 
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     <h3 className="truncate text-sm font-bold text-foreground">
                       {item.name}
                     </h3>
@@ -211,35 +204,35 @@ function CartPage() {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <div className="flex h-8 items-center rounded-lg border border-border bg-card/80 p-0.5">
+                    <div className="flex h-8 items-center rounded-xl border border-border/40 bg-card/50 p-0.5">
                       <button
                         type="button"
-                        className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+                        className="flex h-6 w-6 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        aria-label="Diminuir"
+                        aria-label="Diminuir quantidade"
                       >
-                        <Minus className="h-3 w-3" />
+                        <Minus className="h-3 w-3"/>
                       </button>
                       <span className="w-6 text-center text-xs font-bold text-foreground">
                         {item.quantity}
                       </span>
                       <button
                         type="button"
-                        className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+                        className="flex h-6 w-6 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        aria-label="Aumentar"
+                        aria-label="Aumentar quantidade"
                       >
-                        <Plus className="h-3 w-3" />
+                        <Plus className="h-3 w-3"/>
                       </button>
                     </div>
 
                     <button
                       type="button"
-                      className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+                      className="flex h-8 w-8 items-center justify-center rounded-xl border border-border/30 bg-card/30 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30"
                       onClick={() => removeItem(item.id)}
                       aria-label={`Remover ${item.name}`}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-3.5 w-3.5"/>
                     </button>
                   </div>
                 </div>
@@ -247,23 +240,21 @@ function CartPage() {
             </div>
           </div>
 
-          <div className="glass-card flex items-center gap-3 rounded-xl p-4 text-xs text-muted-foreground">
-            <Truck className="h-4 w-4 text-primary shrink-0" />
-            <span>Todos os cards são enviados com protetor rígido (toploader) e plástico bolha antiestático.</span>
+          <div className="glass-panel flex items-center gap-3 rounded-2xl border border-border/30 p-4 text-xs text-muted-foreground">
+            <Truck className="h-5 w-5 shrink-0 text-primary"/>
+            <span>Todos os cards são enviados com protetor rígido (toploader) profissional e embalagem antiestática com seguro integral.</span>
           </div>
         </div>
 
-        {/* Order Summary & Checkout Form */}
         <div className="space-y-4 lg:col-span-5">
-          {/* Summary Box */}
-          <div className="glass-card rounded-2xl p-5">
+          <div className="glass-panel rounded-2xl border border-border/30 p-5 sm:p-6">
             <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
               Resumo da Compra
             </h2>
 
-            <div className="mt-4 space-y-2 text-xs">
+            <div className="mt-4 space-y-2.5 text-xs">
               <div className="flex justify-between text-muted-foreground">
-                <span>Subtotal ({totalItems} itens)</span>
+                <span>Subtotal ({totalItems} {totalItems === 1 ? "item" : "itens"})</span>
                 <span className="font-semibold text-foreground">
                   R$ {totalPrice.toFixed(2).replace(".", ",")}
                 </span>
@@ -273,10 +264,10 @@ function CartPage() {
                 <span className="font-semibold text-emerald-400">Grátis</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
-                <span>Embalagem Protetora Toploader</span>
+                <span>Embalagem Toploader Rígida</span>
                 <span className="font-semibold text-foreground">Inclusa</span>
               </div>
-              <div className="border-t border-border/60 pt-3 flex justify-between items-baseline">
+              <div className="border-t border-border/40 pt-3 flex justify-between items-baseline">
                 <span className="text-sm font-bold text-foreground">Total</span>
                 <span className="text-xl font-black text-primary">
                   R$ {totalPrice.toFixed(2).replace(".", ",")}
@@ -285,85 +276,48 @@ function CartPage() {
             </div>
           </div>
 
-          {/* Checkout Form */}
-          <div className="glass-card rounded-2xl p-5">
-            <div className="flex items-center gap-2 mb-4">
-              <Lock className="h-4 w-4 text-primary" />
+          <div className="glass-panel rounded-2xl border border-border/30 p-5 sm:p-6">
+            <div className="mb-4 flex items-center gap-2 border-b border-border/30 pb-3">
+              <Lock className="h-4 w-4 text-primary"/>
               <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">
-                Dados de Envio
+                Dados de Envio & Destinatário
               </h2>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
               <div>
-                <Label htmlFor="name" className="text-xs font-semibold text-muted-foreground">
+                <Label className="text-xs font-semibold text-muted-foreground" htmlFor="name">
                   Nome Completo
                 </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Nome do destinatário"
-                  className="mt-1 h-10 rounded-xl bg-card/60 text-xs"
-                  required
-                />
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="name" name="name" onChange="{handleInputChange}" placeholder="Nome do destinatário" required value="{formData.name}"/>
               </div>
 
               <div>
-                <Label htmlFor="email" className="text-xs font-semibold text-muted-foreground">
+                <Label className="text-xs font-semibold text-muted-foreground" htmlFor="email">
                   E-mail de Confirmação
                 </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="destinatario@email.com"
-                  className="mt-1 h-10 rounded-xl bg-card/60 text-xs"
-                  required
-                />
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="email" name="email" onChange="{handleInputChange}" placeholder="destinatario@email.com" required type="email" value="{formData.email}"/>
               </div>
 
               <div>
-                <Label htmlFor="address" className="text-xs font-semibold text-muted-foreground">
+                <Label className="text-xs font-semibold text-muted-foreground" htmlFor="address">
                   Endereço com Número e Bairro
                 </Label>
-                <Input
-                  id="address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                  placeholder="Av. Paulista, 1000 - Apto 42, Bela Vista"
-                  className="mt-1 h-10 rounded-xl bg-card/60 text-xs"
-                  required
-                />
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="address" name="address" onChange="{handleInputChange}" placeholder="Av. Paulista, 1000 - Apto 42, Bela Vista" required value="{formData.address}"/>
               </div>
 
               <div>
-                <Label htmlFor="cep" className="text-xs font-semibold text-muted-foreground">
+                <Label className="text-xs font-semibold text-muted-foreground" htmlFor="cep">
                   CEP
                 </Label>
-                <Input
-                  id="cep"
-                  name="cep"
-                  value={formData.cep}
-                  onChange={handleInputChange}
-                  placeholder="01310-100"
-                  className="mt-1 h-10 rounded-xl bg-card/60 text-xs"
-                />
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="cep" name="cep" onChange="{handleInputChange}" placeholder="01310-100" value="{formData.cep}"/>
               </div>
 
               <div className="pt-2">
-                <Button
-                  type="submit"
-                  className="h-12 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]"
-                  disabled={isSubmitting}
-                >
+                <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]" disabled="{isSubmitting}" type="submit">
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
                       Processando Pedido Seguro...
                     </>
                   ) : (
@@ -373,7 +327,7 @@ function CartPage() {
               </div>
 
               <div className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-muted-foreground">
-                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400"/>
                 <span>Transação 100% segura com garantia TCG Vault</span>
               </div>
             </form>
@@ -381,10 +335,7 @@ function CartPage() {
         </div>
       </div>
 
-      <LoginDialog
-        open={loginOpen}
-        onOpenChange={setLoginOpen}
-        onSuccess={() => {
+      <LoginDialog onOpenChange="{setLoginOpen}" onSuccess="{()" open="{loginOpen}"> {
           setIsSubmitting(true);
           setTimeout(() => {
             setIsSubmitting(false);
