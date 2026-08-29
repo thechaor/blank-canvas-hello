@@ -1,283 +1,434 @@
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 14px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-}
-
-:root {
-  --radius: 0.75rem;
-  --background: oklch(0.09 0.015 255);
-  --foreground: oklch(0.97 0.005 250);
-  --card: oklch(0.12 0.018 255 / 0.85);
-  --card-foreground: oklch(0.97 0.005 250);
-  --popover: oklch(0.12 0.018 255 / 0.95);
-  --popover-foreground: oklch(0.97 0.005 250);
-  --primary: oklch(0.65 0.22 250);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.16 0.02 255);
-  --secondary-foreground: oklch(0.92 0.01 250);
-  --muted: oklch(0.15 0.018 255);
-  --muted-foreground: oklch(0.60 0.015 250);
-  --accent: oklch(0.20 0.035 250);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.65 0.22 250);
-}
-
-.dark {
-  --background: oklch(0.09 0.015 255);
-  --foreground: oklch(0.97 0.005 250);
-  --card: oklch(0.12 0.018 255 / 0.85);
-  --card-foreground: oklch(0.97 0.005 250);
-  --popover: oklch(0.12 0.018 255 / 0.95);
-  --popover-foreground: oklch(0.97 0.005 250);
-  --primary: oklch(0.65 0.22 250);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.16 0.02 255);
-  --secondary-foreground: oklch(0.92 0.01 250);
-  --muted: oklch(0.15 0.018 255);
-  --muted-foreground: oklch(0.60 0.015 250);
-  --accent: oklch(0.20 0.035 250);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.65 0.22 250);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 220 15% 8%;
+    --foreground: 210 20% 98%;
+    --card: 220 15% 12%;
+    --card-foreground: 210 20% 98%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 220 70% 55%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 15% 16%;
+    --muted-foreground: 215 15% 60%;
+    --accent: 220 15% 20%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 220 70% 55%;
+    --radius: 0.75rem;
+  }
+
   * {
-    border-color: var(--color-border);
+    border-color: hsl(var(--border));
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    background-image:
-      radial-gradient(ellipse 70% 40% at 50% 0%, oklch(0.65 0.22 250 / 0.12), transparent 70%),
-      radial-gradient(ellipse 50% 30% at 85% 80%, oklch(0.62 0.20 300 / 0.05), transparent 60%);
-    background-attachment: fixed;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.025em;
   }
 }
 
-/* Subtle Ambient Rain / Particles */
-.rain-drop {
-  position: absolute;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, oklch(0.75 0.14 240 / 0.4) 60%, oklch(0.90 0.08 240 / 0.7) 100%);
-  border-radius: 9999px;
-  will-change: transform;
-  animation: rain-fall linear infinite;
-}
-
-@keyframes rain-fall {
-  0% {
-    transform: translateY(-10vh) scaleY(0.7);
-    opacity: 0;
+@layer components {
+  .glass-card {
+    background: hsl(var(--card) / 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.6);
   }
-  15% {
-    opacity: 0.6;
-  }
-  85% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(110vh) scaleY(1.2);
-    opacity: 0;
-  }
-}
 
-/* Fire Text Effect - Hero Headings */
-.fire-text {
-  background: linear-gradient(
-    135deg,
-    #ffd700 0%,
-    #ff8c00 20%,
-    #ff4500 40%,
-    #ff6347 55%,
-    #ff8c00 70%,
-    #ffd700 85%,
-    #ff4500 100%
-  );
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: fire-animation 4s ease-in-out infinite alternate;
-  text-shadow: 
-    0 0 30px rgba(255, 69, 0, 0.3),
-    0 0 60px rgba(255, 140, 0, 0.2),
-    0 0 90px rgba(255, 215, 0, 0.1);
-}
-
-@keyframes fire-animation {
-  0% {
-    background-position: 0% 50%;
-    text-shadow: 
-      0 0 20px rgba(255, 69, 0, 0.3),
-      0 0 40px rgba(255, 140, 0, 0.2),
-      0 0 60px rgba(255, 215, 0, 0.1);
+  .glass-card-hover {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  25% {
-    text-shadow: 
-      0 0 40px rgba(255, 69, 0, 0.4),
-      0 0 80px rgba(255, 140, 0, 0.3),
-      0 0 120px rgba(255, 215, 0, 0.15);
+
+  .glass-card-hover:hover {
+    border-color: hsl(var(--primary) / 0.4);
+    box-shadow: 0 12px 30px -10px hsl(var(--primary) / 0.25);
+    transform: translateY(-3px);
   }
-  50% {
-    background-position: 100% 50%;
-    text-shadow: 
-      0 0 50px rgba(255, 69, 0, 0.5),
-      0 0 100px rgba(255, 140, 0, 0.35),
-      0 0 150px rgba(255, 215, 0, 0.2);
+
+  .gradient-heading {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 40%, hsl(var(--primary) / 0.8) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  75% {
-    text-shadow: 
-      0 0 40px rgba(255, 69, 0, 0.4),
-      0 0 80px rgba(255, 140, 0, 0.3),
-      0 0 120px rgba(255, 215, 0, 0.15);
-  }
-  100% {
-    background-position: 0% 50%;
-    text-shadow: 
-      0 0 20px rgba(255, 69, 0, 0.3),
-      0 0 40px rgba(255, 140, 0, 0.2),
-      0 0 60px rgba(255, 215, 0, 0.1);
-  }
-}
 
-.fire-subtitle {
-  background: linear-gradient(
-    135deg,
-    #ffa07a 0%,
-    #ff6347 30%,
-    #ff4500 60%,
-    #ff8c00 100%
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: fire-subtitle-glow 3s ease-in-out infinite alternate;
-  font-weight: 600;
-}
-
-@keyframes fire-subtitle-glow {
-  0% {
-    background-position: 0% 50%;
-    opacity: 0.9;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    background-position: 100% 50%;
-    opacity: 0.85;
-  }
-}
-
-/* Utilities */
-@utility glass-card {
-  background: oklch(0.13 0.018 255 / 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid oklch(1 0 0 / 0.08);
-}
-
-@utility glass-card-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card-hover:hover {
-  border-color: oklch(0.65 0.22 250 / 0.35);
-  box-shadow: 0 12px 30px -10px oklch(0.65 0.22 250 / 0.18);
-  transform: translateY(-3px);
-}
-
-@utility gradient-heading {
-  background: linear-gradient(135deg, #ffffff 40%, oklch(0.85 0.08 245) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@utility gold-glow {
-  box-shadow: 0 0 20px -4px oklch(0.82 0.16 85 / 0.35);
-}
-
-@utility shimmer-badge {
-  background: linear-gradient(90deg, oklch(0.20 0.03 250) 0%, oklch(0.28 0.05 250) 50%, oklch(0.20 0.03 250) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 4s infinite linear;
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .rain-drop,
-  .shimmer-badge,
-  .glass-card-hover,
-  .fire-text,
-  .fire-subtitle {
-    animation: none !important;
-    transition: none !important;
-  }
-  
   .fire-text {
-    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    background: linear-gradient(
+      135deg,
+      #ffd700 0%,
+      #ff8c00 20%,
+      #ff4500 40%,
+      #ff6347 55%,
+      #ff8c00 70%,
+      #ffd700 85%,
+      #ff4500 100%
+    );
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+    animation: fire-animation 4s ease-in-out infinite alternate;
+    text-shadow: 
+      0 0 30px rgba(255, 69, 0, 0.3),
+      0 0 60px rgba(255, 140, 0, 0.2),
+      0 0 90px rgba(255, 215, 0, 0.1);
   }
-  
+
+  @keyframes fire-animation {
+    0% {
+      background-position: 0% 50%;
+      text-shadow: 
+        0 0 20px rgba(255, 69, 0, 0.3),
+        0 0 40px rgba(255, 140, 0, 0.2),
+        0 0 60px rgba(255, 215, 0, 0.1);
+    }
+    25% {
+      text-shadow: 
+        0 0 40px rgba(255, 69, 0, 0.4),
+        0 0 80px rgba(255, 140, 0, 0.3),
+        0 0 120px rgba(255, 215, 0, 0.15);
+    }
+    50% {
+      background-position: 100% 50%;
+      text-shadow: 
+        0 0 50px rgba(255, 69, 0, 0.5),
+        0 0 100px rgba(255, 140, 0, 0.35),
+        0 0 150px rgba(255, 215, 0, 0.2);
+    }
+    75% {
+      text-shadow: 
+        0 0 40px rgba(255, 69, 0, 0.4),
+        0 0 80px rgba(255, 140, 0, 0.3),
+        0 0 120px rgba(255, 215, 0, 0.15);
+    }
+    100% {
+      background-position: 0% 50%;
+      text-shadow: 
+        0 0 20px rgba(255, 69, 0, 0.3),
+        0 0 40px rgba(255, 140, 0, 0.2),
+        0 0 60px rgba(255, 215, 0, 0.1);
+    }
+  }
+
   .fire-subtitle {
-    background: linear-gradient(135deg, #ff6347, #ff4500);
+    background: linear-gradient(
+      135deg,
+      #ffa07a 0%,
+      #ff6347 30%,
+      #ff4500 60%,
+      #ff8c00 100%
+    );
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: fire-subtitle-glow 3s ease-in-out infinite alternate;
+    font-weight: 600;
+  }
+
+  @keyframes fire-subtitle-glow {
+    0% {
+      background-position: 0% 50%;
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      background-position: 100% 50%;
+      opacity: 0.85;
+    }
+  }
+
+  .rain-drop {
+    position: absolute;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.3) 60%, hsl(var(--primary) / 0.5) 100%);
+    border-radius: 9999px;
+    will-change: transform;
+    animation: rain-fall linear infinite;
+  }
+
+  @keyframes rain-fall {
+    0% {
+      transform: translateY(-10vh) scaleY(0.7);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.6;
+    }
+    85% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(110vh) scaleY(1.2);
+      opacity: 0;
+    }
+  }
+
+  .water-tank {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    overflow: hidden;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .water-surface-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 80px;
+    fill: hsl(var(--primary) / 0.15);
+    animation: wave-move 8s ease-in-out infinite alternate;
+    filter: blur(4px);
+  }
+
+  .water-surface-wave-secondary {
+    position: absolute;
+    top: 10px;
+    left: -50%;
+    width: 200%;
+    height: 60px;
+    fill: hsl(var(--primary) / 0.08);
+    animation: wave-move-secondary 10s ease-in-out infinite alternate;
+    filter: blur(6px);
+  }
+
+  @keyframes wave-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes wave-move-secondary {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .water-surface-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(180deg, hsl(var(--primary) / 0.12) 0%, transparent 100%);
+    filter: blur(12px);
+  }
+
+  .water-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(180deg, 
+      hsl(var(--primary) / 0.02) 0%,
+      hsl(var(--primary) / 0.04) 30%,
+      hsl(var(--primary) / 0.06) 60%,
+      hsl(220 15% 8% / 0.8) 100%
+    );
+  }
+
+  .water-caustics {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, hsl(var(--primary) / 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, hsl(var(--primary) / 0.02) 0%, transparent 40%);
+    animation: caustics-shift 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes caustics-shift {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
+  }
+
+  .swimming-fish-lane {
+    position: absolute;
+    width: 60px;
+    height: 36px;
+    animation: fish-swim linear infinite;
+    will-change: transform;
+  }
+
+  .fish-swim-ltr {
+    animation-name: fish-swim-ltr;
+  }
+
+  .fish-swim-rtl {
+    animation-name: fish-swim-rtl;
+  }
+
+  @keyframes fish-swim-ltr {
+    0% {
+      transform: translateX(-80px) scaleX(1);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 80px)) scaleX(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fish-swim-rtl {
+    0% {
+      transform: translateX(calc(100vw + 80px)) scaleX(-1);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-80px) scaleX(-1);
+      opacity: 0;
+    }
+  }
+
+  .fish-undulation {
+    animation: fish-undulate 0.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes fish-undulate {
+    0% {
+      transform: rotate(-2deg) translateY(0);
+    }
+    100% {
+      transform: rotate(2deg) translateY(-3px);
+    }
+  }
+
+  .fish-tail-fin {
+    animation: tail-fin-wave 0.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes tail-fin-wave {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+  }
+
+  .fish-side-fin {
+    animation: side-fin-wave 0.9s ease-in-out infinite alternate;
+  }
+
+  @keyframes side-fin-wave {
+    0% { transform: rotate(-3deg); }
+    100% { transform: rotate(3deg); }
+  }
+
+  .aquarium-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.04));
+    border: 1px solid hsl(var(--primary) / 0.06);
+    animation: bubble-rise linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes bubble-rise {
+    0% {
+      transform: translateY(0) scale(0.8);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-80vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  .pokemon-card-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.06;
+  }
+
+  .pokemon-card-float {
+    position: absolute;
+    display: inline-block;
+    animation: card-float ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes card-float {
+    0% {
+      transform: translate(0, 0) rotate(var(--card-rotate, 0deg));
+    }
+    100% {
+      transform: translate(var(--card-float-x, 10px), var(--card-float-y, -10px)) rotate(calc(var(--card-rotate, 0deg) + 5deg));
+    }
+  }
+
+  @layer utilities {
+    .scroll-mt-16 {
+      scroll-margin-top: 4rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rain-drop,
+      .fire-text,
+      .fire-subtitle,
+      .glass-card-hover,
+      .swimming-fish-lane,
+      .fish-undulation,
+      .fish-tail-fin,
+      .fish-side-fin,
+      .aquarium-bubble,
+      .water-surface-wave,
+      .water-surface-wave-secondary,
+      .water-caustics,
+      .pokemon-card-float {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .fire-text {
+        background: linear-gradient(135deg, #ff8c00, #ff4500);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+      }
+
+      .fire-subtitle {
+        background: linear-gradient(135deg, #ff6347, #ff4500);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+    }
   }
 }
