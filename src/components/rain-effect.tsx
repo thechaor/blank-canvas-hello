@@ -168,7 +168,7 @@ export function RainEffect() {
       delay: Math.random() * 10,
       scale: 0.55 + Math.random() * 0.6,
       direction: i % 2 === 0 ? "ltr" : "rtl",
-      variant: variants[i % variants.length],
+      variant: variants[i % variants.length] ?? "cyan",
       opacity: 0.7 + Math.random() * 0.3,
     }));
     setFishes(generatedFishes);
