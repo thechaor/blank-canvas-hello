@@ -239,7 +239,7 @@ function ProductCard({
       <HoverCard openDelay={150} closeDelay={100}>
         <HoverCardTrigger asChild>
           <div
-            className="tech-card tech-card-hover relative flex h-full flex-col overflow-hidden rounded-xl border border-border/30 p-5 transition-all duration-300 cursor-pointer"
+            className="tech-card tech-card-hover relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/30 p-5 transition-all duration-300 cursor-pointer bg-card/30 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/5"
             onClick={() => onViewDetails(product)}
             role="button"
             tabIndex={0}
@@ -259,17 +259,17 @@ function ProductCard({
                 <Award className="h-3 w-3" />
                 {product.badge}
               </span>
-              <span className="rounded-md border border-border/40 bg-card/60 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground">
+              <span className="rounded-lg border border-border/30 bg-card/60 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground">
                 {product.rarity}
               </span>
             </div>
 
             {/* Card image */}
-            <div className="relative z-10 mx-auto flex aspect-[3/4] w-full max-w-[200px] items-center justify-center overflow-hidden rounded-xl bg-black/30 p-3">
+            <div className="relative z-10 mx-auto flex aspect-[3/4] w-full max-w-[200px] items-center justify-center overflow-hidden rounded-xl bg-black/20 p-3">
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-full w-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+                className="h-full w-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
                 loading="lazy"
               />
               <button
@@ -278,7 +278,7 @@ function ProductCard({
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
-                className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-black/50 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:bg-black/70 hover:scale-105"
+                className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:bg-black/60 hover:scale-105"
                 aria-label={`Ver detalhes de ${product.name}`}
               >
                 <Eye className="h-3.5 w-3.5" />
@@ -292,7 +292,7 @@ function ProductCard({
                   <h3 className="text-sm font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
                     {product.name}
                   </h3>
-                  <span className="rounded-md bg-secondary/60 px-2 py-0.5 text-[8px] font-semibold text-muted-foreground">
+                  <span className="rounded-lg bg-secondary/60 px-2 py-0.5 text-[8px] font-semibold text-muted-foreground">
                     {product.type}
                   </span>
                 </div>
@@ -314,10 +314,10 @@ function ProductCard({
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 items-center rounded-lg border border-border/40 bg-card/30 p-0.5">
+                  <div className="flex h-8 items-center rounded-xl border border-border/40 bg-card/30 p-0.5">
                     <button
                       type="button"
-                      className="flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                      className="flex h-6 w-6 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                       onClick={(e) => {
                         e.stopPropagation();
                         setQuantity((q) => Math.max(1, q - 1));
@@ -331,7 +331,7 @@ function ProductCard({
                     </span>
                     <button
                       type="button"
-                      className="flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                      className="flex h-6 w-6 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                       onClick={(e) => {
                         e.stopPropagation();
                         setQuantity((q) => Math.min(99, q + 1));
@@ -345,7 +345,7 @@ function ProductCard({
                   <Button
                     type="button"
                     size="sm"
-                    className="h-8 flex-1 gap-1.5 rounded-lg text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
+                    className="h-8 flex-1 gap-1.5 rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
                     onClick={handleAddToCart}
                     disabled={isAdding || isAdded}
                   >
@@ -375,7 +375,7 @@ function ProductCard({
           side="right"
           align="center"
           sideOffset={14}
-          className="z-50 w-auto border-border/40 bg-popover/90 p-4 backdrop-blur-2xl"
+          className="z-50 w-auto border-border/40 bg-popover/90 p-4 backdrop-blur-2xl rounded-2xl"
         >
           <CardHoverContent card={product} />
         </HoverCardContent>
@@ -419,10 +419,10 @@ function Index() {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border/40 py-20 sm:py-28">
+      <section className="relative overflow-hidden border-b border-border/30 py-20 sm:py-28">
         {/* Ambient glow */}
-        <div className="pointer-events-none absolute -top-60 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-40 right-0 -z-10 h-[400px] w-[600px] rounded-full bg-primary/5 blur-3xl" />
+        <div className="pointer-events-none absolute -top-60 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 right-0 -z-10 h-[400px] w-[600px] rounded-full bg-primary/3 blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center">
@@ -442,7 +442,7 @@ function Index() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 size="lg"
-                className="h-11 rounded-xl px-7 text-sm font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02]"
+                className="h-11 rounded-2xl px-7 text-sm font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02]"
                 onClick={scrollToProducts}
               >
                 Explorar Catálogo
@@ -452,7 +452,7 @@ function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-11 rounded-xl border-border/40 bg-card/30 px-6 text-sm font-semibold backdrop-blur-sm hover:bg-accent"
+                  className="h-11 rounded-2xl border-border/30 bg-card/30 px-6 text-sm font-semibold backdrop-blur-sm hover:bg-accent"
                   onClick={() => setLoginOpen(true)}
                 >
                   Criar Conta
@@ -462,7 +462,7 @@ function Index() {
 
             {/* Value Props */}
             <div className="mt-14 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
-              <div className="glass-panel flex items-center gap-3.5 rounded-xl border border-border/30 p-4 text-left transition-all hover:border-primary/10 hover:shadow-lg hover:shadow-primary/5">
+              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/20 p-4 text-left transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
@@ -472,7 +472,7 @@ function Index() {
                 </div>
               </div>
 
-              <div className="glass-panel flex items-center gap-3.5 rounded-xl border border-border/30 p-4 text-left transition-all hover:border-primary/10 hover:shadow-lg hover:shadow-primary/5">
+              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/20 p-4 text-left transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Truck className="h-5 w-5" />
                 </div>
@@ -482,7 +482,7 @@ function Index() {
                 </div>
               </div>
 
-              <div className="glass-panel flex items-center gap-3.5 rounded-xl border border-border/30 p-4 text-left transition-all hover:border-primary/10 hover:shadow-lg hover:shadow-primary/5">
+              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/20 p-4 text-left transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <RotateCcw className="h-5 w-5" />
                 </div>
@@ -521,7 +521,7 @@ function Index() {
                   placeholder="Buscar por nome ou coleção..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="h-9 w-full rounded-xl border border-border/40 bg-card/30 pl-8 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30"
+                  className="h-9 w-full rounded-2xl border border-border/30 bg-card/20 px-8 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 backdrop-blur-sm"
                 />
               </div>
 
@@ -531,10 +531,10 @@ function Index() {
                     key={t}
                     type="button"
                     onClick={() => setSelectedType(t)}
-                    className={`rounded-lg px-2.5 py-1 text-[9px] font-semibold capitalize transition-all ${
+                    className={`rounded-xl px-2.5 py-1 text-[9px] font-semibold capitalize transition-all ${
                       selectedType === t
                         ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                        : "border border-border/30 bg-card/20 text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        : "border border-border/20 bg-card/20 text-muted-foreground hover:text-foreground hover:bg-accent/50"
                     }`}
                   >
                     {t === "all" ? "Todos" : t}
@@ -556,7 +556,7 @@ function Index() {
               ))}
             </div>
           ) : (
-            <div className="mt-16 flex flex-col items-center justify-center rounded-2xl border border-border/30 bg-card/20 py-16 text-center">
+            <div className="mt-16 flex flex-col items-center justify-center rounded-2xl border border-border/20 bg-card/20 py-16 text-center backdrop-blur-sm">
               <Info className="h-8 w-8 text-muted-foreground" />
               <h3 className="mt-3 text-base font-bold text-foreground">Nenhuma carta encontrada</h3>
               <p className="mt-1 text-xs text-muted-foreground">
@@ -565,7 +565,7 @@ function Index() {
               <Button
                 variant="outline"
                 size="sm"
-                className="mt-4 rounded-lg text-xs"
+                className="mt-4 rounded-xl text-xs"
                 onClick={() => {
                   setSearchTerm("");
                   setSelectedType("all");
@@ -579,7 +579,7 @@ function Index() {
       </section>
 
       {/* Trust Banner */}
-      <section className="border-t border-border/40 bg-gradient-to-b from-card/20 to-background py-16">
+      <section className="border-t border-border/30 bg-gradient-to-b from-card/20 to-background py-16">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
           <span className="tech-chip">
             <Gem className="h-3 w-3" />
@@ -593,7 +593,7 @@ function Index() {
           </p>
           <div className="mt-6 flex justify-center">
             <Button
-              className="h-11 rounded-xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
+              className="h-11 rounded-2xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
               onClick={scrollToProducts}
             >
               Comprar Cartas Agora
