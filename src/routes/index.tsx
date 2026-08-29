@@ -427,10 +427,10 @@ function Index() {
             </div>
 
             <h1 className="mt-6 max-w-3xl text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              O cofre definitivo para <span className="gradient-heading">Mestres Pokémon</span>.
+              O cofre definitivo para <span className="gradient-heading fire-text">Mestres Pokémon</span>.
             </h1>
 
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base lg:text-lg">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base lg:text-lg fire-subtitle">
               Explore cartas raras, edições limitadas e lendárias com histórico verificado, envio blindado e garantia vitalícia de originalidade.
             </p>
 
