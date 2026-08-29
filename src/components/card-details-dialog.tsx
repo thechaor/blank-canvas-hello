@@ -32,7 +32,7 @@ export function CardDetailsDialog({ card, open, onOpenChange }: CardDetailsDialo
   if (!card) return null;
 
   return (
-    <Dialog onOpenChange="{onOpenChange}" open="{open}">
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent className="max-w-3xl overflow-hidden rounded-2xl border border-border/40 bg-card/95 p-0 shadow-2xl backdrop-blur-2xl">
         <div className="grid gap-0 sm:grid-cols-12">
           {/* Card Presentation Stage */}

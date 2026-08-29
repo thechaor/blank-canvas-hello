@@ -48,7 +48,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
   };
 
   return (
-    <Dialog onOpenChange="{onOpenChange}" open="{open}">
+    <Dialog onOpenChange={onOpenChange} open={open}>
       <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-border/40 bg-card/95 p-6 shadow-2xl backdrop-blur-2xl">
         <DialogHeader className="text-center">
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/70 text-primary-foreground shadow-lg shadow-primary/25">
@@ -80,7 +80,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
               </Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60"/>
-                <Input id="login-email" onChange="{(e)" type="email" value="{email}"> setEmail(e.target.value)}
+                <Input id="login-email" onChange={(e) => setEmail(e.target.value)} type="email" value={email}
                   placeholder="colecionador@tcgvault.com"
                   className="h-10 rounded-xl bg-background/50 pl-9 text-xs backdrop-blur-sm"
                   autoComplete="email"
@@ -95,7 +95,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
               </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60"/>
-                <Input id="login-password" onChange="{(e)" type="password" value="{password}"> setPassword(e.target.value)}
+                <Input id="login-password" onChange={(e) => setPassword(e.target.value)} type="password" value={password}
                   placeholder="••••••••"
                   className="h-10 rounded-xl bg-background/50 pl-9 text-xs backdrop-blur-sm"
                   autoComplete="current-password"
@@ -110,7 +110,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
               </div>
             )}
 
-            <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]" disabled="{isSubmitting}" type="submit">
+            <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]" disabled={isSubmitting} type="submit">
               {isSubmitting ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin mr-2"/>
