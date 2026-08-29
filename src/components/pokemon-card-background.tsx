@@ -9,36 +9,30 @@ const CARD_POSITIONS = [
   { left: "28%", top: "85%", delay: "0.8s", duration: "12s", size: "text-4xl", rotate: "-8deg", floatX: "-18px", floatY: "12px" },
   { left: "38%", top: "10%", delay: "2.2s", duration: "9.5s", size: "text-5xl", rotate: "10deg", floatX: "14px", floatY: "-22px" },
   { left: "45%", top: "55%", delay: "4s", duration: "11.5s", size: "text-3xl", rotate: "-15deg", floatX: "-10px", floatY: "16px" },
-  { left: "55%", top: "25%", delay: "1s", duration: "10.5s", size: "text-4xl", rotate: "6deg", floatX: "16px", floatY: "-18px" },
-  { left: "62%", top: "80%", delay: "3.5s", duration: "9s", size: "text-5xl", rotate: "-10deg", floatX: "-14px", floatY: "14px" },
-  { left: "70%", top: "45%", delay: "0.5s", duration: "12.5s", size: "text-3xl", rotate: "12deg", floatX: "12px", floatY: "-16px" },
-  { left: "78%", top: "15%", delay: "2.8s", duration: "10s", size: "text-4xl", rotate: "-6deg", floatX: "-16px", floatY: "20px" },
-  { left: "85%", top: "65%", delay: "1.8s", duration: "11s", size: "text-5xl", rotate: "9deg", floatX: "10px", floatY: "-14px" },
-  { left: "92%", top: "30%", delay: "4.5s", duration: "9.8s", size: "text-3xl", rotate: "-14deg", floatX: "-12px", floatY: "18px" },
+  { left: "55%", top: "25%", delay: "1.2s", duration: "10.5s", size: "text-4xl", rotate: "5deg", floatX: "12px", floatY: "-18px" },
+  { left: "65%", top: "75%", delay: "2.8s", duration: "9.8s", size: "text-5xl", rotate: "-10deg", floatX: "-15px", floatY: "20px" },
+  { left: "75%", top: "40%", delay: "0.5s", duration: "11.2s", size: "text-3xl", rotate: "18deg", floatX: "16px", floatY: "-14px" },
+  { left: "85%", top: "15%", delay: "3.5s", duration: "10.2s", size: "text-4xl", rotate: "-20deg", floatX: "-14px", floatY: "18px" },
+  { left: "92%", top: "65%", delay: "1.8s", duration: "12.5s", size: "text-5xl", rotate: "12deg", floatX: "18px", floatY: "-25px" }
 ];
 
-function PokemonCardBackground() {
+export const PokemonCardBackground = memo(function PokemonCardBackground() {
   return (
-    <div className="pokemon-card-bg" aria-hidden="true">
-      {CARD_POSITIONS.map((card, index) => (
-        <span
-          key={index}
-          className={`pokemon-card-float ${card.size}`}
+    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px] z-10" />
+      {CARD_POSITIONS.map((pos, i) => (
+        <div
+          key={i}
+          className={`absolute opacity-20 ${pos.size} text-primary`}
           style={{
-            left: card.left,
-            top: card.top,
-            animationDelay: card.delay,
-            animationDuration: card.duration,
-            transform: `rotate(${card.rotate})`,
-            "--card-float-x": card.floatX,
-            "--card-float-y": card.floatY,
-          } as React.CSSProperties}
+            left: pos.left,
+            top: pos.top,
+            transform: `rotate(${pos.rotate})`,
+          }}
         >
-          {CARD_EMOJIS[index % CARD_EMOJIS.length]}
-        </span>
+          {CARD_EMOJIS[i % CARD_EMOJIS.length]}
+        </div>
       ))}
     </div>
   );
-}
-
-export default memo(PokemonCardBackground);
+});
