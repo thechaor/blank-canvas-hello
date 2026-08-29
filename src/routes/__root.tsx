@@ -152,7 +152,7 @@ function Header() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <Link className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full" hash={link.hash} key={link.label} to={link.to}>
+            <Link className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full" hash={link.hash ?? ""} key={link.label} to={link.to}>
               {link.label}
             </Link>
           ))}
@@ -208,7 +208,7 @@ function Header() {
         <nav className="border-t border-border/40 bg-background/95 px-4 py-4 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
-              <Link key={link.label} onClick={() => setMobileOpen(false)} to={link.to} hash={link.hash}
+              <Link key={link.label} onClick={() => setMobileOpen(false)} to={link.to} hash={link.hash ?? ""}
                 className="rounded-xl px-3 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
                 {link.label}
