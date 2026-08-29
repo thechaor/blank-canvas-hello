@@ -289,32 +289,32 @@ function CartPage() {
                 <Label className="text-xs font-semibold text-muted-foreground" htmlFor="name">
                   Nome Completo
                 </Label>
-                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="name" name="name" onChange="{handleInputChange}" placeholder="Nome do destinatário" required value="{formData.name}"/>
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="name" name="name" onChange={handleInputChange} placeholder="Nome do destinatário" required value={formData.name}/>
               </div>
 
               <div>
                 <Label className="text-xs font-semibold text-muted-foreground" htmlFor="email">
                   E-mail de Confirmação
                 </Label>
-                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="email" name="email" onChange="{handleInputChange}" placeholder="destinatario@email.com" required type="email" value="{formData.email}"/>
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="email" name="email" onChange={handleInputChange} placeholder="destinatario@email.com" required type="email" value={formData.email}/>
               </div>
 
               <div>
                 <Label className="text-xs font-semibold text-muted-foreground" htmlFor="address">
                   Endereço com Número e Bairro
                 </Label>
-                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="address" name="address" onChange="{handleInputChange}" placeholder="Av. Paulista, 1000 - Apto 42, Bela Vista" required value="{formData.address}"/>
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="address" name="address" onChange={handleInputChange} placeholder="Av. Paulista, 1000 - Apto 42, Bela Vista" required value={formData.address}/>
               </div>
 
               <div>
                 <Label className="text-xs font-semibold text-muted-foreground" htmlFor="cep">
                   CEP
                 </Label>
-                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="cep" name="cep" onChange="{handleInputChange}" placeholder="01310-100" value="{formData.cep}"/>
+                <Input className="mt-1 h-10 rounded-xl border-border/40 bg-card/50 text-xs backdrop-blur-sm" id="cep" name="cep" onChange={handleInputChange} placeholder="01310-100" value={formData.cep}/>
               </div>
 
               <div className="pt-2">
-                <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]" disabled="{isSubmitting}" type="submit">
+                <Button className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]" disabled={isSubmitting} type="submit">
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin"/>

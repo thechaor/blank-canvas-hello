@@ -333,7 +333,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <QueryClientProvider client="{queryClient}">
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
           <div className="relative flex min-h-screen flex-col bg-background selection:bg-primary/20 selection:text-foreground">
