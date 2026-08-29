@@ -127,6 +127,95 @@
   }
 }
 
+/* Fire Text Effect - Hero Headings */
+.fire-text {
+  background: linear-gradient(
+    135deg,
+    #ffd700 0%,
+    #ff8c00 20%,
+    #ff4500 40%,
+    #ff6347 55%,
+    #ff8c00 70%,
+    #ffd700 85%,
+    #ff4500 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fire-animation 4s ease-in-out infinite alternate;
+  text-shadow: 
+    0 0 30px rgba(255, 69, 0, 0.3),
+    0 0 60px rgba(255, 140, 0, 0.2),
+    0 0 90px rgba(255, 215, 0, 0.1);
+}
+
+@keyframes fire-animation {
+  0% {
+    background-position: 0% 50%;
+    text-shadow: 
+      0 0 20px rgba(255, 69, 0, 0.3),
+      0 0 40px rgba(255, 140, 0, 0.2),
+      0 0 60px rgba(255, 215, 0, 0.1);
+  }
+  25% {
+    text-shadow: 
+      0 0 40px rgba(255, 69, 0, 0.4),
+      0 0 80px rgba(255, 140, 0, 0.3),
+      0 0 120px rgba(255, 215, 0, 0.15);
+  }
+  50% {
+    background-position: 100% 50%;
+    text-shadow: 
+      0 0 50px rgba(255, 69, 0, 0.5),
+      0 0 100px rgba(255, 140, 0, 0.35),
+      0 0 150px rgba(255, 215, 0, 0.2);
+  }
+  75% {
+    text-shadow: 
+      0 0 40px rgba(255, 69, 0, 0.4),
+      0 0 80px rgba(255, 140, 0, 0.3),
+      0 0 120px rgba(255, 215, 0, 0.15);
+  }
+  100% {
+    background-position: 0% 50%;
+    text-shadow: 
+      0 0 20px rgba(255, 69, 0, 0.3),
+      0 0 40px rgba(255, 140, 0, 0.2),
+      0 0 60px rgba(255, 215, 0, 0.1);
+  }
+}
+
+.fire-subtitle {
+  background: linear-gradient(
+    135deg,
+    #ffa07a 0%,
+    #ff6347 30%,
+    #ff4500 60%,
+    #ff8c00 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fire-subtitle-glow 3s ease-in-out infinite alternate;
+  font-weight: 600;
+}
+
+@keyframes fire-subtitle-glow {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 100% 50%;
+    opacity: 0.85;
+  }
+}
+
 /* Utilities */
 @utility glass-card {
   background: oklch(0.13 0.018 255 / 0.65);
@@ -170,8 +259,25 @@
 @media (prefers-reduced-motion: reduce) {
   .rain-drop,
   .shimmer-badge,
-  .glass-card-hover {
+  .glass-card-hover,
+  .fire-text,
+  .fire-subtitle {
     animation: none !important;
     transition: none !important;
+  }
+  
+  .fire-text {
+    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+  }
+  
+  .fire-subtitle {
+    background: linear-gradient(135deg, #ff6347, #ff4500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
