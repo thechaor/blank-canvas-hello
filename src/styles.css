@@ -4,30 +4,34 @@
 
 @layer base {
   :root {
-    --background: 220 15% 8%;
+    --background: 222 20% 6%;
     --foreground: 210 20% 98%;
-    --card: 220 15% 12%;
+    --card: 222 18% 10%;
     --card-foreground: 210 20% 98%;
-    --popover: 220 15% 12%;
+    --popover: 222 18% 10%;
     --popover-foreground: 210 20% 98%;
-    --primary: 220 70% 55%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 15% 16%;
+    --primary: 220 90% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 18% 14%;
     --secondary-foreground: 210 20% 98%;
-    --muted: 220 15% 16%;
+    --muted: 222 18% 14%;
     --muted-foreground: 215 15% 60%;
-    --accent: 220 15% 20%;
+    --accent: 220 25% 18%;
     --accent-foreground: 210 20% 98%;
-    --destructive: 0 65% 55%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 210 20% 98%;
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 220 70% 55%;
+    --border: 222 18% 18%;
+    --input: 222 18% 16%;
+    --ring: 220 90% 58%;
     --radius: 0.75rem;
   }
 
   * {
     border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -38,397 +42,161 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.4);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.6);
+  }
 }
 
 @layer components {
-  .glass-card {
-    background: hsl(var(--card) / 0.65);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--border) / 0.6);
+  .glass {
+    background: hsl(var(--card) / 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
   }
 
-  .glass-card-hover {
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  .glass-hover {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .glass-card-hover:hover {
-    border-color: hsl(var(--primary) / 0.4);
-    box-shadow: 0 12px 30px -10px hsl(var(--primary) / 0.25);
-    transform: translateY(-3px);
+  .glass-hover:hover {
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 40px -8px hsl(var(--primary) / 0.15);
+    transform: translateY(-2px);
   }
 
-  .gradient-heading {
-    background: linear-gradient(135deg, hsl(var(--foreground)) 40%, hsl(var(--primary) / 0.8) 100%);
+  .glow-text {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 30%, hsl(var(--primary)) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .fire-text {
-    background: linear-gradient(
-      135deg,
-      #ffd700 0%,
-      #ff8c00 20%,
-      #ff4500 40%,
-      #ff6347 55%,
-      #ff8c00 70%,
-      #ffd700 85%,
-      #ff4500 100%
-    );
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: fire-animation 4s ease-in-out infinite alternate;
-    text-shadow: 
-      0 0 30px rgba(255, 69, 0, 0.3),
-      0 0 60px rgba(255, 140, 0, 0.2),
-      0 0 90px rgba(255, 215, 0, 0.1);
+  .glow-ring {
+    position: relative;
   }
 
-  @keyframes fire-animation {
-    0% {
-      background-position: 0% 50%;
-      text-shadow: 
-        0 0 20px rgba(255, 69, 0, 0.3),
-        0 0 40px rgba(255, 140, 0, 0.2),
-        0 0 60px rgba(255, 215, 0, 0.1);
-    }
-    25% {
-      text-shadow: 
-        0 0 40px rgba(255, 69, 0, 0.4),
-        0 0 80px rgba(255, 140, 0, 0.3),
-        0 0 120px rgba(255, 215, 0, 0.15);
-    }
-    50% {
-      background-position: 100% 50%;
-      text-shadow: 
-        0 0 50px rgba(255, 69, 0, 0.5),
-        0 0 100px rgba(255, 140, 0, 0.35),
-        0 0 150px rgba(255, 215, 0, 0.2);
-    }
-    75% {
-      text-shadow: 
-        0 0 40px rgba(255, 69, 0, 0.4),
-        0 0 80px rgba(255, 140, 0, 0.3),
-        0 0 120px rgba(255, 215, 0, 0.15);
-    }
-    100% {
-      background-position: 0% 50%;
-      text-shadow: 
-        0 0 20px rgba(255, 69, 0, 0.3),
-        0 0 40px rgba(255, 140, 0, 0.2),
-        0 0 60px rgba(255, 215, 0, 0.1);
-    }
-  }
-
-  .fire-subtitle {
-    background: linear-gradient(
-      135deg,
-      #ffa07a 0%,
-      #ff6347 30%,
-      #ff4500 60%,
-      #ff8c00 100%
-    );
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: fire-subtitle-glow 3s ease-in-out infinite alternate;
-    font-weight: 600;
-  }
-
-  @keyframes fire-subtitle-glow {
-    0% {
-      background-position: 0% 50%;
-      opacity: 0.9;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      background-position: 100% 50%;
-      opacity: 0.85;
-    }
-  }
-
-  .rain-drop {
+  .glow-ring::before {
+    content: "";
     position: absolute;
-    pointer-events: none;
-    background: linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.3) 60%, hsl(var(--primary) / 0.5) 100%);
-    border-radius: 9999px;
-    will-change: transform;
-    animation: rain-fall linear infinite;
-  }
-
-  @keyframes rain-fall {
-    0% {
-      transform: translateY(-10vh) scaleY(0.7);
-      opacity: 0;
-    }
-    15% {
-      opacity: 0.6;
-    }
-    85% {
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(110vh) scaleY(1.2);
-      opacity: 0;
-    }
-  }
-
-  .water-tank {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40vh;
-    overflow: hidden;
-    opacity: 0.4;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.3), transparent 50%, hsl(var(--primary) / 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     pointer-events: none;
   }
 
-  .water-surface-wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 80px;
-    fill: hsl(var(--primary) / 0.15);
-    animation: wave-move 8s ease-in-out infinite alternate;
-    filter: blur(4px);
+  .tech-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .water-surface-wave-secondary {
-    position: absolute;
-    top: 10px;
-    left: -50%;
-    width: 200%;
-    height: 60px;
-    fill: hsl(var(--primary) / 0.08);
-    animation: wave-move-secondary 10s ease-in-out infinite alternate;
-    filter: blur(6px);
+  .tech-dot-pattern {
+    background-image: radial-gradient(hsl(var(--primary) / 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
-  @keyframes wave-move {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @keyframes wave-move-secondary {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .water-surface-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(180deg, hsl(var(--primary) / 0.12) 0%, transparent 100%);
-    filter: blur(12px);
-  }
-
-  .water-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(180deg, 
-      hsl(var(--primary) / 0.02) 0%,
-      hsl(var(--primary) / 0.04) 30%,
-      hsl(var(--primary) / 0.06) 60%,
-      hsl(220 15% 8% / 0.8) 100%
-    );
-  }
-
-  .water-caustics {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse at 20% 50%, hsl(var(--primary) / 0.03) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 30%, hsl(var(--primary) / 0.02) 0%, transparent 40%);
-    animation: caustics-shift 12s ease-in-out infinite alternate;
-  }
-
-  @keyframes caustics-shift {
-    0% { opacity: 0.5; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.1); }
-  }
-
-  .swimming-fish-lane {
-    position: absolute;
-    width: 60px;
-    height: 36px;
-    animation: fish-swim linear infinite;
-    will-change: transform;
-  }
-
-  .fish-swim-ltr {
-    animation-name: fish-swim-ltr;
-  }
-
-  .fish-swim-rtl {
-    animation-name: fish-swim-rtl;
-  }
-
-  @keyframes fish-swim-ltr {
-    0% {
-      transform: translateX(-80px) scaleX(1);
-      opacity: 0;
-    }
-    5% {
-      opacity: 1;
-    }
-    95% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(calc(100vw + 80px)) scaleX(1);
-      opacity: 0;
-    }
-  }
-
-  @keyframes fish-swim-rtl {
-    0% {
-      transform: translateX(calc(100vw + 80px)) scaleX(-1);
-      opacity: 0;
-    }
-    5% {
-      opacity: 1;
-    }
-    95% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(-80px) scaleX(-1);
-      opacity: 0;
-    }
-  }
-
-  .fish-undulation {
-    animation: fish-undulate 0.8s ease-in-out infinite alternate;
-  }
-
-  @keyframes fish-undulate {
-    0% {
-      transform: rotate(-2deg) translateY(0);
-    }
-    100% {
-      transform: rotate(2deg) translateY(-3px);
-    }
-  }
-
-  .fish-tail-fin {
-    animation: tail-fin-wave 0.6s ease-in-out infinite alternate;
-  }
-
-  @keyframes tail-fin-wave {
-    0% { transform: rotate(-8deg); }
-    100% { transform: rotate(8deg); }
-  }
-
-  .fish-side-fin {
-    animation: side-fin-wave 0.9s ease-in-out infinite alternate;
-  }
-
-  @keyframes side-fin-wave {
-    0% { transform: rotate(-3deg); }
-    100% { transform: rotate(3deg); }
-  }
-
-  .aquarium-bubble {
+  .hero-glow {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.04));
-    border: 1px solid hsl(var(--primary) / 0.06);
-    animation: bubble-rise linear infinite;
-    will-change: transform;
-  }
-
-  @keyframes bubble-rise {
-    0% {
-      transform: translateY(0) scale(0.8);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.6;
-    }
-    90% {
-      opacity: 0.6;
-    }
-    100% {
-      transform: translateY(-80vh) scale(1.2);
-      opacity: 0;
-    }
-  }
-
-  .pokemon-card-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
+    filter: blur(80px);
     pointer-events: none;
-    overflow: hidden;
-    opacity: 0.06;
+    opacity: 0.3;
   }
 
-  .pokemon-card-float {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.05) 45%,
+      hsl(var(--primary) / 0.08) 50%,
+      hsl(var(--primary) / 0.05) 55%,
+      transparent 100%
+    );
+    background-size: 300% 100%;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .tech-border {
+    position: relative;
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .tech-border::after {
+    content: "";
     position: absolute;
-    display: inline-block;
-    animation: card-float ease-in-out infinite alternate;
-    will-change: transform;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), transparent 50%, hsl(var(--primary) / 0.05));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
   }
 
-  @keyframes card-float {
-    0% {
-      transform: translate(0, 0) rotate(var(--card-rotate, 0deg));
-    }
-    100% {
-      transform: translate(var(--card-float-x, 10px), var(--card-float-y, -10px)) rotate(calc(var(--card-rotate, 0deg) + 5deg));
-    }
+  .tech-border:hover::after {
+    opacity: 1;
   }
 
-  @layer utilities {
-    .scroll-mt-16 {
-      scroll-margin-top: 4rem;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .rain-drop,
-      .fire-text,
-      .fire-subtitle,
-      .glass-card-hover,
-      .swimming-fish-lane,
-      .fish-undulation,
-      .fish-tail-fin,
-      .fish-side-fin,
-      .aquarium-bubble,
-      .water-surface-wave,
-      .water-surface-wave-secondary,
-      .water-caustics,
-      .pokemon-card-float {
-        animation: none !important;
-        transition: none !important;
-      }
-
-      .fire-text {
-        background: linear-gradient(135deg, #ff8c00, #ff4500);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        text-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
-      }
-
-      .fire-subtitle {
-        background: linear-gradient(135deg, #ff6347, #ff4500);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-    }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.15);
   }
 }
