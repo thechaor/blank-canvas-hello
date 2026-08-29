@@ -162,7 +162,7 @@ function CartPage() {
             <LogIn className="h-4 w-4 text-primary"/>
             <span>Possui uma conta de colecionador? Acesse para preencher seus dados automaticamente.</span>
           </div>
-          <Button className="h-8 rounded-lg border-border/40 bg-card/50 text-xs font-semibold hover:bg-accent" onClick="{()"> setLoginOpen(true)} size="sm" variant="outline">
+          <Button className="h-8 rounded-lg border-border/40 bg-card/50 text-xs font-semibold hover:bg-accent" onClick={() => setLoginOpen(true)} size="sm" variant="outline">
             Acessar Conta
           </Button>
         </div>
@@ -335,7 +335,10 @@ function CartPage() {
         </div>
       </div>
 
-      <LoginDialog onOpenChange="{setLoginOpen}" onSuccess="{()" open="{loginOpen}"> {
+      <LoginDialog
+        onOpenChange={setLoginOpen}
+        open={loginOpen}
+        onSuccess={() => {
           setIsSubmitting(true);
           setTimeout(() => {
             setIsSubmitting(false);
