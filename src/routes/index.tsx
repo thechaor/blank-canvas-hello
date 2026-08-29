@@ -8,22 +8,18 @@ import {
   Plus,
   ShoppingBag,
   Sparkles,
-  Star,
   ShieldCheck,
   Truck,
   RotateCcw,
   Search,
-  SlidersHorizontal,
   Info,
   Flame,
   Zap,
   Eye,
   Award,
-  Layers,
-  Gem
+  Gem,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { useCart } from "@/contexts/cart-context";
@@ -52,7 +48,7 @@ const products: CardDetails[] = [
     set: "Brilliant Stars",
     price: 249.90,
     rarity: "Ultra Rare",
-    image: "https://images.pokemontcg.io/swsh9/154.png",
+    image: "[https://images.pokemontcg.io/swsh9/154.png](https://images.pokemontcg.io/swsh9/154.png)",
     type: "Fogo",
     color: "from-orange-500/20 to-red-500/20",
     badge: "Destaque",
@@ -71,7 +67,7 @@ const products: CardDetails[] = [
     set: "Vivid Voltage",
     price: 189.90,
     rarity: "Ultra Rare",
-    image: "https://images.pokemontcg.io/swsh4/188.png",
+    image: "[https://images.pokemontcg.io/swsh4/188.png](https://images.pokemontcg.io/swsh4/188.png)",
     type: "Elétrico",
     color: "from-yellow-500/20 to-amber-500/20",
     badge: "Mais Vendido",
@@ -90,7 +86,7 @@ const products: CardDetails[] = [
     set: "Pokémon GO",
     price: 159.90,
     rarity: "VSTAR",
-    image: "https://images.pokemontcg.io/sgo/30.png",
+    image: "[https://images.pokemontcg.io/sgo/30.png](https://images.pokemontcg.io/sgo/30.png)",
     type: "Psíquico",
     color: "from-purple-500/20 to-violet-500/20",
     badge: "Novo",
@@ -109,7 +105,7 @@ const products: CardDetails[] = [
     set: "Fusion Strike",
     price: 199.90,
     rarity: "Ultra Rare",
-    image: "https://images.pokemontcg.io/swsh8/157.png",
+    image: "[https://images.pokemontcg.io/swsh8/157.png](https://images.pokemontcg.io/swsh8/157.png)",
     type: "Fantasma",
     color: "from-indigo-500/20 to-purple-500/20",
     badge: "Raro",
@@ -128,7 +124,7 @@ const products: CardDetails[] = [
     set: "Silver Tempest",
     price: 179.90,
     rarity: "Ultra Rare",
-    image: "https://images.pokemontcg.io/swsh12/186.png",
+    image: "[https://images.pokemontcg.io/swsh12/186.png](https://images.pokemontcg.io/swsh12/186.png)",
     type: "Voador",
     color: "from-sky-500/20 to-blue-500/20",
     badge: "Lendário",
@@ -147,7 +143,7 @@ const products: CardDetails[] = [
     set: "Evolving Skies",
     price: 299.90,
     rarity: "Secret Rare",
-    image: "https://images.pokemontcg.io/swsh7/218.png",
+    image: "[https://images.pokemontcg.io/swsh7/218.png](https://images.pokemontcg.io/swsh7/218.png)",
     type: "Dragão",
     color: "from-emerald-500/20 to-green-500/20",
     badge: "Colecionador",
@@ -236,10 +232,10 @@ function ProductCard({
       }`}
       style={{ transitionDelay: `${index * 60}ms` }}
     >
-      <HoverCard openDelay={150} closeDelay={100}>
+      <HoverCard closeDelay="{100}" openDelay="{150}">
         <HoverCardTrigger asChild>
           <div
-            className="tech-card tech-card-hover relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/30 p-5 transition-all duration-300 cursor-pointer bg-card/30 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/5"
+            className="tech-card tech-card-hover relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/40 p-5 transition-all duration-300 cursor-pointer bg-card/40 backdrop-blur-md hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
             onClick={() => onViewDetails(product)}
             role="button"
             tabIndex={0}
@@ -256,20 +252,20 @@ function ProductCard({
             {/* Top badges */}
             <div className="relative z-10 mb-3 flex items-center justify-between">
               <span className="tech-chip">
-                <Award className="h-3 w-3" />
+                <Award className="h-3 w-3"/>
                 {product.badge}
               </span>
-              <span className="rounded-lg border border-border/30 bg-card/60 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground">
+              <span className="rounded-lg border border-border/40 bg-card/70 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground">
                 {product.rarity}
               </span>
             </div>
 
             {/* Card image */}
-            <div className="relative z-10 mx-auto flex aspect-[3/4] w-full max-w-[200px] items-center justify-center overflow-hidden rounded-xl bg-black/20 p-3">
+            <div className="relative z-10 mx-auto flex aspect-[3/4] w-full max-w-[200px] items-center justify-center overflow-hidden rounded-xl bg-background/50 border border-border/30 p-3 shadow-inner">
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-full w-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                className="h-full w-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
                 loading="lazy"
               />
               <button
@@ -278,10 +274,10 @@ function ProductCard({
                   e.stopPropagation();
                   onViewDetails(product);
                 }}
-                className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:bg-black/60 hover:scale-105"
+                className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-background/80 text-foreground opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:bg-background hover:scale-105"
                 aria-label={`Ver detalhes de ${product.name}`}
               >
-                <Eye className="h-3.5 w-3.5" />
+                <Eye className="h-3.5 w-3.5"/>
               </button>
             </div>
 
@@ -292,14 +288,14 @@ function ProductCard({
                   <h3 className="text-sm font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
                     {product.name}
                   </h3>
-                  <span className="rounded-lg bg-secondary/60 px-2 py-0.5 text-[8px] font-semibold text-muted-foreground">
+                  <span className="rounded-lg bg-secondary/80 px-2 py-0.5 text-[8px] font-semibold text-muted-foreground border border-border/30">
                     {product.type}
                   </span>
                 </div>
                 <p className="mt-0.5 text-[10px] text-muted-foreground">{product.set}</p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-border/30">
+              <div className="mt-4 pt-3 border-t border-border/40">
                 <div className="flex items-baseline justify-between mb-3">
                   <div className="flex flex-col">
                     <span className="text-[8px] font-medium uppercase tracking-wider text-muted-foreground">Preço</span>
@@ -307,14 +303,14 @@ function ProductCard({
                       R$ {product.price.toFixed(2).replace(".", ",")}
                     </span>
                   </div>
-                  <span className="text-[9px] font-medium text-emerald-400/80 flex items-center gap-1">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400/60" />
+                  <span className="text-[9px] font-medium text-emerald-400/90 flex items-center gap-1">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
                     Disponível
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 items-center rounded-xl border border-border/40 bg-card/30 p-0.5">
+                  <div className="flex h-8 items-center rounded-xl border border-border/50 bg-background/50 p-0.5">
                     <button
                       type="button"
                       className="flex h-6 w-6 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
@@ -324,7 +320,7 @@ function ProductCard({
                       }}
                       aria-label="Diminuir"
                     >
-                      <Minus className="h-3 w-3" />
+                      <Minus className="h-3 w-3"/>
                     </button>
                     <span className="w-5 text-center text-xs font-bold text-foreground">
                       {quantity}
@@ -338,30 +334,24 @@ function ProductCard({
                       }}
                       aria-label="Aumentar"
                     >
-                      <Plus className="h-3 w-3" />
+                      <Plus className="h-3 w-3"/>
                     </button>
                   </div>
 
-                  <Button
-                    type="button"
-                    size="sm"
-                    className="h-8 flex-1 gap-1.5 rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
-                    onClick={handleAddToCart}
-                    disabled={isAdding || isAdded}
-                  >
+                  <Button className="h-8 flex-1 gap-1.5 rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" disabled="{isAdding" isAdded} onClick="{handleAddToCart}" size="sm" type="button" ||>
                     {isAdding ? (
                       <>
-                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        <Loader2 className="h-3.5 w-3.5 animate-spin"/>
                         Salvando...
                       </>
                     ) : isAdded ? (
                       <>
-                        <Check className="h-3.5 w-3.5" />
+                        <Check className="h-3.5 w-3.5"/>
                         Adicionado
                       </>
                     ) : (
                       <>
-                        <ShoppingBag className="h-3.5 w-3.5" />
+                        <ShoppingBag className="h-3.5 w-3.5"/>
                         Comprar
                       </>
                     )}
@@ -371,13 +361,8 @@ function ProductCard({
             </div>
           </div>
         </HoverCardTrigger>
-        <HoverCardContent
-          side="right"
-          align="center"
-          sideOffset={14}
-          className="z-50 w-auto border-border/40 bg-popover/90 p-4 backdrop-blur-2xl rounded-2xl"
-        >
-          <CardHoverContent card={product} />
+        <HoverCardContent align="center" className="z-50 w-auto border-border/40 bg-popover/90 p-4 backdrop-blur-2xl rounded-2xl shadow-2xl" side="right" sideOffset="{14}">
+          <CardHoverContent card="{product}"/>
         </HoverCardContent>
       </HoverCard>
     </div>
@@ -385,12 +370,12 @@ function ProductCard({
 }
 
 function Index() {
-  const [selectedCard, setSelectedCard] = useState<CardDetails | null>(null);
+  const [selectedCard, setSelectedCard] = useState<CardDetails null |>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const handleViewDetails = (product: CardDetails) => {
     setSelectedCard(product);
@@ -421,13 +406,13 @@ function Index() {
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border/30 py-20 sm:py-28">
         {/* Ambient glow */}
-        <div className="pointer-events-none absolute -top-60 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-40 right-0 -z-10 h-[400px] w-[600px] rounded-full bg-primary/3 blur-3xl" />
+        <div className="pointer-events-none absolute -top-60 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 right-0 -z-10 h-[400px] w-[600px] rounded-full bg-primary/5 blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center">
             <div className="tech-chip-filled">
-              <Sparkles className="h-3.5 w-3.5" />
+              <Sparkles className="h-3.5 w-3.5"/>
               <span>Colecionismo de Alto Nível</span>
             </div>
 
@@ -440,21 +425,12 @@ function Index() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button
-                size="lg"
-                className="h-11 rounded-2xl px-7 text-sm font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02]"
-                onClick={scrollToProducts}
-              >
+              <Button className="h-11 rounded-2xl px-7 text-sm font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02]" onClick="{scrollToProducts}" size="lg">
                 Explorar Catálogo
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4"/>
               </Button>
               {!isAuthenticated && (
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-11 rounded-2xl border-border/30 bg-card/30 px-6 text-sm font-semibold backdrop-blur-sm hover:bg-accent"
-                  onClick={() => setLoginOpen(true)}
-                >
+                <Button className="h-11 rounded-2xl border-border/40 bg-card/40 px-6 text-sm font-semibold backdrop-blur-sm hover:bg-accent" onClick="{()"> setLoginOpen(true)} size="lg" variant="outline">
                   Criar Conta
                 </Button>
               )}
@@ -462,9 +438,9 @@ function Index() {
 
             {/* Value Props */}
             <div className="mt-14 grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
-              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/20 p-4 text-left transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
+              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/30 p-4 text-left transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <ShieldCheck className="h-5 w-5" />
+                  <ShieldCheck className="h-5 w-5"/>
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-foreground">Autenticidade Garantida</h4>
@@ -472,9 +448,9 @@ function Index() {
                 </div>
               </div>
 
-              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/20 p-4 text-left transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
+              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/30 p-4 text-left transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Truck className="h-5 w-5" />
+                  <Truck className="h-5 w-5"/>
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-foreground">Embalagem Blindada</h4>
@@ -482,9 +458,9 @@ function Index() {
                 </div>
               </div>
 
-              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/20 p-4 text-left transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
+              <div className="glass-panel flex items-center gap-3.5 rounded-2xl border border-border/30 p-4 text-left transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <RotateCcw className="h-5 w-5" />
+                  <RotateCcw className="h-5 w-5"/>
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-foreground">Envio com Seguro</h4>
@@ -502,7 +478,7 @@ function Index() {
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.15em] text-primary">
-                <Flame className="h-4 w-4" />
+                <Flame className="h-4 w-4"/>
                 <span>Edições Especiais</span>
               </div>
               <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
@@ -515,13 +491,13 @@ function Index() {
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="relative flex-1 sm:w-64">
-                <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground"/>
                 <input
                   type="text"
                   placeholder="Buscar por nome ou coleção..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="h-9 w-full rounded-2xl border border-border/30 bg-card/20 px-8 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 backdrop-blur-sm"
+                  className="h-9 w-full rounded-2xl border border-border/40 bg-card/40 px-8 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 backdrop-blur-sm"
                 />
               </div>
 
@@ -534,7 +510,7 @@ function Index() {
                     className={`rounded-xl px-2.5 py-1 text-[9px] font-semibold capitalize transition-all ${
                       selectedType === t
                         ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                        : "border border-border/20 bg-card/20 text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        : "border border-border/30 bg-card/30 text-muted-foreground hover:text-foreground hover:bg-accent/50"
                     }`}
                   >
                     {t === "all" ? "Todos" : t}
@@ -547,29 +523,22 @@ function Index() {
           {filteredProducts.length > 0 ? (
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {filteredProducts.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  index={index}
-                  onViewDetails={handleViewDetails}
-                />
+                <ProductCard index="{index}" key="{product.id}" onViewDetails="{handleViewDetails}" product="{product}"/>
               ))}
             </div>
           ) : (
-            <div className="mt-16 flex flex-col items-center justify-center rounded-2xl border border-border/20 bg-card/20 py-16 text-center backdrop-blur-sm">
-              <Info className="h-8 w-8 text-muted-foreground" />
+            <div className="mt-16 flex flex-col items-center justify-center rounded-2xl border border-border/30 bg-card/30 py-16 text-center backdrop-blur-sm">
+              <Info className="h-8 w-8 text-muted-foreground"/>
               <h3 className="mt-3 text-base font-bold text-foreground">Nenhuma carta encontrada</h3>
               <p className="mt-1 text-xs text-muted-foreground">
                 Tente redefinir seus filtros ou buscar por outro termo.
               </p>
-              <Button
-                variant="outline"
-                size="sm"
-                className="mt-4 rounded-xl text-xs"
-                onClick={() => {
+              <Button className="mt-4 rounded-xl text-xs" onClick="{()"> {
                   setSearchTerm("");
                   setSelectedType("all");
                 }}
+                size="sm"
+                variant="outline"
               >
                 Limpar filtros
               </Button>
@@ -582,7 +551,7 @@ function Index() {
       <section className="border-t border-border/30 bg-gradient-to-b from-card/20 to-background py-16">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
           <span className="tech-chip">
-            <Gem className="h-3 w-3" />
+            <Gem className="h-3 w-3"/>
             Comunidade de Colecionadores
           </span>
           <h2 className="mt-4 text-2xl font-extrabold text-foreground sm:text-3xl">
@@ -592,24 +561,17 @@ function Index() {
             Nossos curadores monitoram leilões internacionais e estoques globais para encontrar o card exato que falta no seu fichário.
           </p>
           <div className="mt-6 flex justify-center">
-            <Button
-              className="h-11 rounded-2xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
-              onClick={scrollToProducts}
-            >
+            <Button className="h-11 rounded-2xl px-6 text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]" onClick="{scrollToProducts}">
               Comprar Cartas Agora
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-4 w-4"/>
             </Button>
           </div>
         </div>
       </section>
 
-      <CardDetailsDialog
-        card={selectedCard}
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
-      />
+      <CardDetailsDialog card="{selectedCard}" onOpenChange="{setDialogOpen}" open="{dialogOpen}"/>
 
-      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
+      <LoginDialog onOpenChange="{setLoginOpen}" open="{loginOpen}"/>
     </div>
   );
 }
