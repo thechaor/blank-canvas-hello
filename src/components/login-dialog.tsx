@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, LogIn, Mail, Lock, CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
+import { Loader2, LogIn, Mail, Lock, CheckCircle2, Sparkles, ShieldCheck, Zap } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,9 +49,9 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-border/80 bg-card/95 p-6 shadow-2xl backdrop-blur-2xl">
+      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-border/40 bg-card/80 p-6 shadow-2xl backdrop-blur-2xl">
         <DialogHeader className="text-center">
-          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary to-blue-400 text-primary-foreground shadow-lg shadow-primary/25">
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/70 text-primary-foreground shadow-lg shadow-primary/25">
             <Sparkles className="h-6 w-6" />
           </div>
           <DialogTitle className="text-xl font-black tracking-tight text-foreground">
@@ -79,14 +79,14 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
                 E-mail
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
                 <Input
                   id="login-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="colecionador@tcgvault.com"
-                  className="h-10 rounded-xl bg-background/60 pl-9 text-xs"
+                  className="h-10 rounded-xl bg-background/30 pl-9 text-xs backdrop-blur-sm"
                   autoComplete="email"
                   required
                 />
@@ -98,14 +98,14 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
                 Senha
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60" />
                 <Input
                   id="login-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="h-10 rounded-xl bg-background/60 pl-9 text-xs"
+                  className="h-10 rounded-xl bg-background/30 pl-9 text-xs backdrop-blur-sm"
                   autoComplete="current-password"
                   required
                 />
@@ -120,7 +120,7 @@ export function LoginDialog({ open, onOpenChange, onSuccess }: LoginDialogProps)
 
             <Button
               type="submit"
-              className="h-11 w-full rounded-xl text-xs font-bold shadow-md shadow-primary/20 transition-all hover:scale-[1.01]"
+              className="h-11 w-full rounded-xl text-xs font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.01]"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
