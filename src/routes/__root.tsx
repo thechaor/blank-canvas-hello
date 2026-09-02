@@ -21,9 +21,7 @@ export const Route = createRootRouteWithContext()({
 function RootComponent() {
   return (
     <>
-      <HeadContent>
-        <link rel="stylesheet" href={appCss} />
-      </HeadContent>
+      <HeadContent />
       <AuthProvider>
         <CartProvider>
           <ThemeRegistry>
