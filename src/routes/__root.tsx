@@ -12,15 +12,16 @@ import appCss from "../styles.css?url";
 import { LayoutDashboard, ShoppingBag, User } from "lucide-react";
 
 export const Route = createRootRouteWithContext()({
+  head: () => ({
+    links: [{ rel: "stylesheet", href: appCss }],
+  }),
   component: RootComponent,
 });
 
 function RootComponent() {
   return (
     <>
-      <HeadContent>
-        <link rel="stylesheet" href={appCss} />
-      </HeadContent>
+      <HeadContent />
       <AuthProvider>
         <CartProvider>
           <ThemeRegistry>
