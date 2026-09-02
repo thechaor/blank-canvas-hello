@@ -12,6 +12,9 @@ import appCss from "../styles.css?url";
 import { LayoutDashboard, ShoppingBag, User } from "lucide-react";
 
 export const Route = createRootRouteWithContext()({
+  head: () => ({
+    links: [{ rel: "stylesheet", href: appCss }],
+  }),
   component: RootComponent,
 });
 
